@@ -1,8 +1,8 @@
-# Boss candidate 0.2.0
+# Boss behavior 0.2.0
 
-0.2.0 tested and visually accepted on feature/boss-hud (2026-10-27); see the
-candidate runtime result in VERIFIED_RUNTIME.md. Source promotion/public packaged
-release has not been performed. The baseline production Lua remains
+0.2.0 tested and visually accepted, then promoted to main (2026-10-27); see the
+runtime result in VERIFIED_RUNTIME.md. The user deferred public installer publication.
+Accepted runtime source is frozen by SoulsEnemyHUD-v0.2.0. The baseline production Lua remains
 available at 271149ee2770cb219cc20a85e59a158f690f3b89. No gameplay/stat changes.
 
 ## Mechanism and readiness checkpoints

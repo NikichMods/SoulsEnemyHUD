@@ -303,6 +303,19 @@ are accepted from the user's explicit complete visual report, with defeat/reset
 seam evidence additionally preserved in diagnostic 02. Do not infer a boss victory
 or multiple-source test from this report/log. These scopes remain unverified.
 
-The accepted local payload stays installed. Main/release state is unchanged;
-original host-derived package and raw logs remain local and are not uploaded to
-the source repository. No rebuild or version reuse occurred after acceptance.
+The accepted local payload stays installed. Original host-derived package and raw
+logs remain local and are not uploaded to the source repository. No rebuild or
+version reuse occurred after acceptance.
+
+## Source promotion of 0.2.0, 2026-10-27
+
+The user explicitly authorized fixing 0.2.0 and moving the accepted changes to
+main, with public installer publication deferred. Main was fast-forwarded from
+516b859cc81447f4c6d889130b454bf9ae6219c8 to the accepted feature history. The tag
+`SoulsEnemyHUD-v0.2.0` freezes exact tested runtime source
+9211d885d5a0cf7e5e5bb7e845ce192193daa5c8; per-mod naming avoids a combined bundle
+version. Runtime Scripts/UI/VERSION/build inputs were compared against that
+commit with no differences. Only current-state documentation changed afterward.
+Existing offline checks and live acceptance remain applicable; no verification
+rebuild, payload replacement, game launch or repeated gameplay test was needed.
+GitHub Release and public host-derived installer assets are explicitly deferred.
