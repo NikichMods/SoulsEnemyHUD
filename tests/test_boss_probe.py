@@ -7,7 +7,7 @@ source = (Path(__file__).resolve().parents[1] /
           'research/boss-hud/diagnostic-01/Scripts/main.lua').read_text(encoding='utf-8')
 
 
-def fixture(missing=()):
+def fixture(missing=(), source_text=source):
     lua = LuaRuntime(unpack_returned_tuples=True)
     lua.execute('''
 wall=100; serial=0; logs={}; registered={}; queue={}; available={}
@@ -86,7 +86,7 @@ function batch() invoke('NormalHUDBP_C:UpdateBossStat',wrap(hud),wrap(1.0)) end
 ''')
     for path in missing:
         lua.globals().available[path] = False
-    lua.execute(source)
+    lua.execute(source_text)
     lua.execute('tick()')
     return lua
 
@@ -144,3 +144,52 @@ lua = fixture((missing,))
 lua.execute('wall=116; tick(); assert(contains("object=waiting")); assert(not contains("event=DISPATCH"))')
 lua.execute('wall=1900; tick(); assert(contains("reason=30-minute-limit")); assert(tick()==true)')
 print('PASS boss probe: absent hooks remain waiting, bounded lifetime ends observation; offline mocks do not prove UE4SS binding or live JS delivery.')
+
+# Diagnostic 02 deliberately uses the proven outgoing-event path, not the failed
+# query adapter or the broad overhead registry. Keep 01's frozen payload intact.
+source02 = (Path(__file__).resolve().parents[1] /
+            'research/boss-hud/diagnostic-02/Scripts/main.lua').read_text(encoding='utf-8')
+lua = fixture(source_text=source02)
+lua.execute('''
+assert(not findHook('GetSceneGameCharacterWithTag') and not findHook('MeterOnHead2_C:Tick'))
+function visibility(value,direct)
+ hp.IsShowBossStat=value
+ local localEvent=obj('CoherentUIGTJSEvent')
+ -- Native visibility uses a LOCAL event; it must not require hud.JsEventObject.
+ local parameter=wrap(value); if direct then parameter=value end
+ invoke('JSEvent:AddBool',wrap(localEvent),parameter)
+ invoke('BaseComponent:TriggerJSEvent',wrap(component),wrap(str('ToggleDisplayBossStat')),wrap(localEvent))
+end
+hp.IsShowBossStat=false; batch(); tick()
+assert(contains('event=HUD_STATE') and contains('shown=false ready=true'))
+visibility(true,true); add(attr); dispatch(); tick()
+assert(contains('event=SOURCE') and contains('name="Boss Name"'))
+-- A bad independent HUD must not stop the healthy HUD or scheduler.
+local bad,badProps=obj('NormalHUDBP_C',{IsShowBossStat='invalid',IsPageReady=true})
+invoke('NormalHUDBP_C:UpdateBossStat',wrap(bad),wrap(1.0))
+wall=101; tick(); assert(contains('event=REJECT'))
+-- Player death itself is a user action; simulate only its observed native UI output here.
+wall=102; visibility(false,true); tick()
+assert(contains('payload_shown=false shown=false ready=true'))
+assert(contains('actor_valid=true attr_valid=true owner_matches=true'))
+wall=115; tick(); assert(count('event=HEARTBEAT')>=2, 'one bad HUD must not stop heartbeat')
+assert(count('event=REJECT')==1, 'same bad HUD must not flood log')
+-- Partial teardown: a stale attribute owner reports false instead of killing the poll.
+atp.GetOwner=function() return nil end; wall=116; tick()
+assert(contains('owner_matches=false'))
+hp.alive=false; wall=117; tick(); assert(contains('event=HUD_REMOVED'))
+hud,hp=obj('NormalHUDBP_C',{IsShowBossStat=false,IsPageReady=true,JsEventObject=event})
+component,cp=obj('CoherentUIGTHUD',{GetOwner=function() return hud end}); hp.CoherentUIGTHUD=component
+batch(); wall=118; tick()
+assert(contains('shown=false ready=true last_actor=none'))
+-- A rejected source sample must not prevent later visibility events.
+add(attr); wall=130; dispatch(); local before=count('event=VISIBILITY')
+visibility(false); assert(count('event=VISIBILITY')==before+1)
+-- Temporary queue failure is reported, then observation can resume.
+local enqueue=ExecuteInGameThread
+ExecuteInGameThread=function() error('mock unavailable game thread') end
+wall=131; tick(); assert(contains('game-thread-queue'))
+ExecuteInGameThread=enqueue; wall=145; tick(); assert(count('event=HEARTBEAT')>=3)
+wall=1900; tick(); assert(contains('reason=30-minute-limit')); assert(tick()==true)
+''')
+print('PASS boss probe 02: native show/hide including false/local events, live boss after hide, bad-HUD isolation, stale owner, HUD destruction/new HUD, recovery after rejected samples/queue errors; all callbacks preserve native returns.')
