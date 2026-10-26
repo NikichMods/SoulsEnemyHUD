@@ -204,3 +204,63 @@ per-object observation failures and observe the native visibility/lifecycle
 boundary directly; do not infer cleanup from silence. If a query adapter is still
 needed, establish its actual reflected signature/callback argument types first.
 This is the next research scope, not implemented diagnostic 02 or a READY gate.
+
+## Boss HUD: diagnostic 02 defeat/respawn result, 2026-10-27
+
+Status: **reset through invalidation/replacement of the HUD confirmed for the
+observed player-death/respawn scenario**, with matching explicit user observation.
+This closes the missing defeat-path lifecycle evidence from diagnostic 01; it is
+not a production implementation, victory test or general multi-boss claim.
+
+Frozen payload: `7e7e4e83181c72e970e19c86bd3e821903ceb6b7`, script SHA256
+`08245B5996CD87CF154C5617E2C800318E2341AAB9B22B18F0FEE543DBFB58AA`.
+Installed bytes matched this identity after the session; both production Lua files
+still matched the accepted hashes above. Collection found no game process.
+
+Preserved log: ignored root
+`.local/research/boss-hud/diagnostic-02/run-20261027-020402-UE4SS.log`, SHA256
+`1E1687FCBC522B9C14B012CE1C3A5BB7840B4BE0B190C7C06682BD65D3D528F9`.
+Adjacent `run-20261027-020402-analysis.json` records extracted lines and identities.
+Session: 02:04:02–02:07:05 MSK; ends `Event loop end`. Expected loader activation,
+four HOOK records, 19 HEARTBEAT records, no REJECT, ERROR or early STOP.
+
+Observed sequence (line numbers refer to the frozen log):
+
+| Time MSK / line | Direct observation |
+| --- | --- |
+| 02:06:03 / 768 | Actual ToggleDisplayBossStat payload=true; active HUD shown=true, ready=true |
+| 02:06:03–02:06:38 / 769–786 | Eight emitted SOURCE records for the same raveneous_BP_C, «Пожиратель Ненасытный», attribute component and HUD |
+| 02:06:41 / 787 | That exact active HUD is no longer valid; HUD_REMOVED identifies its previous source |
+| 02:06:42 / 788 | A different HUD is valid and ready=true, with the native IsShowBossStat=false |
+| 02:06:43 and 02:06:53 / 789, 796 | Heartbeat continues with one HUD; dispatch counter stays at 368 |
+| 02:07:00–02:07:05 / 797–801 | Replacement HUD becomes invalid during later session closure; heartbeat still operates, then loader loop ends |
+
+The user explicitly reported dying to the boss, respawning outside the arena,
+seeing the large boss bar disappear, waiting and closing the game. Those visual/
+gameplay observations and the native invalidation/new inactive HUD agree.
+`last_actor=none` on the new instance is the observer's empty history, not a
+reflected host-owned boss-reference field. The positive reset proof is the old
+HUD's invalidity plus the new HUD's native inactive/ready state and the user's
+visible result, not silence or a diagnostic-written cleared value.
+
+Only visibility=true was captured. There is no outgoing native visibility=false
+event in this transition; do not claim that event was verified or infer the old
+boss actor/component also became invalid. A visibility-event-only cleanup design
+would miss the demonstrated lifetime boundary. Bind source state to the exact HUD
+instance, reject invalid objects, discard its association when that HUD becomes
+invalid/replaced and never transfer it to a new HUD merely because it is the same
+class. Native inactive state is an additional guard; a fresh outgoing boss-source
+event is the evidence for a new association. These are implementation constraints
+derived from the observations, not behavior already shipped in production.
+
+The failed Boss-query adapter is not required to prove this source/reset path and
+was deliberately absent from diagnostic 02. Its ABI stays unverified rather than
+being repaired speculatively. Further production edits still require their own
+per-property gates, particularly final visibility writers on the overhead widget
+and the separate Coherent appearance/font path. No repeat of this death test is
+needed solely to recover already preserved evidence. Victory, multiple sources,
+and any future production candidate need their own appropriate acceptance.
+
+After collection the activation marker was moved outside loader paths into this
+session's ignored evidence directory; diagnostic 02 is disabled, its frozen script
+and prior payloads are retained, and no game launch/termination was performed.
