@@ -264,3 +264,45 @@ and any future production candidate need their own appropriate acceptance.
 After collection the activation marker was moved outside loader paths into this
 session's ignored evidence directory; diagnostic 02 is disabled, its frozen script
 and prior payloads are retained, and no game launch/termination was performed.
+
+## Candidate 0.2.0: runtime binding and visual acceptance, 2026-10-27
+
+The user completed the installed 0.2.0 session, closed the game and explicitly
+reported: «визуально всё отработало идеально, всё как надо». This is visual/
+behavioral acceptance of this tested local candidate, not an instruction to publish
+host-derived assets or promote source to main. Installed bytes were not changed.
+
+Exact source: `9211d885d5a0cf7e5e5bb7e845ce192193daa5c8`. Verified after the session:
+
+| Payload | SHA256 |
+| --- | --- |
+| Scripts/main.lua | FCAAF0A58D47FE83B0CF6AEBA54551FA43106A736D6403CDF5DA385DDDB806C9 |
+| Scripts/policy.lua | 98C003F7EC48D34923809CB7CFEFE089F3DA1B4178492134FF86A7C02761E254 |
+| Scripts/boss.lua | BEFF1F61A4482914FB777910FDFE9B98494D2F1824B0AA5026A6A18AC2696BDB |
+| Local z330_SoulsEnemyHUD_P.pak | 9C37974EB79CA807A05DC889347232BDA89895C14D56AE65665C05CAA6CAD277 |
+
+Preserved root ignored log:
+`.local/candidates/SoulsEnemyHUD-0.2.0/run-20261027-023344-UE4SS.log`, SHA256
+`A45997CC922B4FF6202713EF8A821C3DD5EF280AEFF2A60DA062483DA30271EE`.
+An adjacent analysis JSON and deployment manifest preserve session/payload identity.
+Session 02:33:44–02:36:06 MSK, expected 0.2.0 loader line, no diagnostic-probe
+START, log ends `Event loop end`; no game process was present during collection.
+
+Native hooks for the boss event path registered, and line 728 at 02:34:37 records
+`Boss source bound; bridge=SEH1` for the same raveneous_BP_C whose overhead widget
+and HP were observed immediately earlier. Ordinary enemy HP entries also used the
+accepted width adapter. Across 35 SoulsEnemyHUD log records there were no module
+errors, disabled integration, fallback activation or restoration-after-error.
+This is positive evidence for the new binding/AddString path. A new damage-pool
+widget is acquired later, and the session closes without recorded mod failure.
+
+The production log deliberately does not contain every HP/damage/visibility frame,
+DOM error stream or a direct teardown trace. It therefore does not independently
+prove numeric timing, exact rendering or all cleanup steps. Those visual outcomes
+are accepted from the user's explicit complete visual report, with defeat/reset
+seam evidence additionally preserved in diagnostic 02. Do not infer a boss victory
+or multiple-source test from this report/log. These scopes remain unverified.
+
+The accepted local payload stays installed. Main/release state is unchanged;
+original host-derived package and raw logs remain local and are not uploaded to
+the source repository. No rebuild or version reuse occurred after acceptance.

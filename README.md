@@ -2,7 +2,7 @@
 
 Компактные полоски противников, маркер захвата и суммирующийся урон.
 
-Status: accepted 0.1.0 baseline; 0.2.0 boss candidate awaits game acceptance.
+Status: 0.2.0 tested and visually accepted locally; source promotion is separate.
 No packaged public release yet. Target: Steam1.09/build12996889, Windows x64.
 
 - [Current status and next task](docs/STATUS.md)
