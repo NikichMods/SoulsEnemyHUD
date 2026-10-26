@@ -1,5 +1,6 @@
 local UEHelpers=require("UEHelpers")
 local Policy=require("policy")
+local Boss=require("boss")
 local config={trailHold=0.45,trailFade=0.5,showAfterHit=3.0,fadeIn=0.12,fadeOut=0.3,
     width=90,height=7,minWidth=68,maxWidth=134,referenceHP=252,widthExponent=0.25,
     comboWindow=1.2,damageHold=1.2,damageFade=0.3,damageFontSize=12,
@@ -214,12 +215,26 @@ local function tick(widget,geometry)
     local ok,err=pcall(function()
         if not e.ready and not prepare(widget,e) then return end
         if not valid(e.avatar) or not valid(e.hp) then return end
+        local boss=Boss.isBoss(widget.Avatar)
+        if boss~=e.isBoss then
+            e.policy=Policy.new(); e.lastAlpha=nil; e.lastTail=nil; e.lastDamage=nil; e.damageAlpha=nil
+            e.isBoss=boss
+        end
+        if boss and widget.Avatar:GetAddress()==e.avatar:GetAddress() then
+            -- Post native Tick: only HP/digits, never the root, stamina or lock dot.
+            e.hp:SetRenderOpacity(0); e.frame:SetRenderOpacity(0); e.trail:SetRenderOpacity(0)
+            e.damage:SetRenderOpacity(0)
+            if valid(e.nativeDamageText) then e.nativeDamageText:SetRenderOpacity(0) end
+            if valid(e.nativeDamage) then e.nativeDamage:SetRenderOpacity(0) end
+            updateDot(widget,e,geometry,widget.IsLockShowing==true)
+            return
+        end
         local now=UEHelpers.GetGameplayStatics():GetTimeSeconds(widget)
         local locked=widget.IsLockShowing==true
         local result=Policy.step(e.policy,now,e.hp.Percent,locked,config)
         if not result then return end
         -- Do not change the parent widget's native visibility, distance culling,
-        -- positioning, enemy stamina or any boss HUD.
+        -- positioning or enemy stamina.
         if result.alpha>0 and e.hp:GetVisibility()~=4 then e.hp:SetVisibility(4) end
         if result.alpha~=e.lastAlpha then
             e.hp:SetRenderOpacity(result.alpha)
@@ -280,12 +295,13 @@ local function hideFloating(hud)
     end
 end
 
-log("Loaded compact v7; EB Garamond Default size12 outline1; no shadow/backdrop; accepted bars and DamageDigits suppression unchanged")
+log("Loaded 0.2.0; compact enemies and boss bridge; Garamond; runtime acceptance pending")
 LoopAsync(1000,function()
     if pending then return false end
     pending=true
     ExecuteInGameThread(function()
         local ok,err=pcall(function()
+            Boss.poll(report)
             for key,e in pairs(entries) do
                 if not valid(e.widget) then entries[key]=nil end
             end

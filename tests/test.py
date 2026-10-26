@@ -123,6 +123,7 @@ function FindAllOf(class) assert(class=='HudUmg_C'); return {floating} end
 
 function frame(t,lock,h) now=t; widget.IsLockShowing=lock; hp.Percent=h; widget.CurVals=array({400*h,100}); hook({get=function() return widget end},{get=function() return 'current geometry' end}) end
 ''')
+lua.execute('package.preload.boss=function() return {isBoss=function() return bossMode==true end,poll=function() end} end')
 lua.execute((root/'main.lua').read_text(encoding='utf-8'))
 lua.execute('''
 poll(); assert(floatingRoot.alpha==0); floatingRoot.RenderOpacity=1; floatingHook({get=function() return floating end}); assert(floatingRoot.alpha==0); wrongOwner=true; frame(0,false,1); assert(#objects==0)
@@ -135,7 +136,10 @@ assert(objects[1].Slot.p.X+1==hp.Slot.p.X)
 assert(objects[1].Slot.size.X-objects[2].Slot.size.X==2)
 frame(4,false,.7); assert(objects[4].alpha==0 and hp.alpha==1)
 frame(6,false,.7); frame(6.4,false,.7); assert(hp.alpha==0)
-failProjection=true; frame(7,true,.7)
+bossMode=true; frame(6.5,true,.7)
+assert(hp.alpha==0 and objects[1].alpha==0 and objects[2].alpha==0 and objects[3].alpha==0)
+assert(objects[4].alpha==1 and widget.DamageTextCanvas.alpha==0)
+bossMode=false; failProjection=true; frame(7,true,.7)
 assert(hp.alpha==1 and hp.Slot.size.X==200 and widget.LockIcon.alpha==1)
 for _,o in ipairs(objects) do assert(o.removed) end
 ''')

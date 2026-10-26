@@ -1,0 +1,20 @@
+/* SPDX-License-Identifier: MPL-2.0 */
+/* Accepted linear RGB converted to sRGB for Coherent; preserve native chrome/animation. */
+#BossHP > .meter > span.cur_val { background-color: rgb(158, 55, 55); }
+#BossHP > .meter > span.pre_val { background-color: rgb(211, 173, 97); }
+#SoulsEnemyHUDBossDamage {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    margin-bottom: 0.4vh;
+    font-family: EBGBold;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-align: right;
+    color: rgb(243, 239, 225);
+    -webkit-text-stroke: 1px black;
+    text-shadow: none;
+    background: none;
+    pointer-events: none;
+    opacity: 0;
+}

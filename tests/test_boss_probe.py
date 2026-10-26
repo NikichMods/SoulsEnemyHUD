@@ -193,3 +193,29 @@ ExecuteInGameThread=enqueue; wall=145; tick(); assert(count('event=HEARTBEAT')>=
 wall=1900; tick(); assert(contains('reason=30-minute-limit')); assert(tick()==true)
 ''')
 print('PASS boss probe 02: native show/hide including false/local events, live boss after hide, bad-HUD isolation, stale owner, HUD destruction/new HUD, recovery after rejected samples/queue errors; all callbacks preserve native returns.')
+
+# Production bridge: use proven input seams, append identity, adopt only a complete single-source batch.
+lua = fixture(source_text='LoopAsync(1000,function() return false end)')
+lua.globals().boss = lua.execute((Path(__file__).resolve().parents[1] / 'Scripts/boss.lua').read_text())
+lua.execute('''
+ap.IsPlayerControlled=function() return false end
+ep.AddString=function(self,value) identityArgument=value end
+boss.poll(function(s) table.insert(logs,s) end)
+assert(not findHook('GetSceneGameCharacterWithTag'))
+add(attr); dispatch(); assert(not boss.isBoss(actor))
+assert(identityArgument:match('^SEH1:%d+:%d+:%d+$'))
+batch(); assert(boss.isBoss(actor))
+hp.IsShowBossStat=false; assert(not boss.isBoss(actor))
+hp.IsShowBossStat=true; assert(not boss.isBoss(actor)); add(attr); dispatch(); batch(); assert(boss.isBoss(actor))
+hp.alive=false; assert(not boss.isBoss(actor)); hp.alive=true
+other,op=obj('GenesisCharacter',{DisplayName=str('Other'),IsPlayerControlled=function() return false end})
+otherAttr,oat=obj('CharAttrComponent',{GetOwner=function() return other end}); op.CharAttrComponent=otherAttr
+add(attr); dispatch(); add(otherAttr); dispatch(); batch()
+assert(not boss.isBoss(actor) and not boss.isBoss(other))
+assert(contains('Multiple boss sources'))
+add(attr); dispatch(); batch(); assert(boss.isBoss(actor))
+ep.AddString=function() error('injected unsupported extension') end
+add(attr); dispatch(); batch(); assert(not boss.isBoss(actor))
+assert(contains('fallback=accepted-overhead'))
+''')
+print('PASS production boss bridge: exact identity extension, complete batch, show/hide and destroyed HUD invalidation, multiple-source fallback, fail-safe native return preservation.')
