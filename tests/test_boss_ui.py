@@ -5,6 +5,8 @@ import shutil
 import subprocess
 
 root = Path(__file__).resolve().parents[1]
+version = (root/'VERSION').read_text().strip()
+assert f'Loaded {version};' in (root/'Scripts/main.lua').read_text(), 'Loader version must match VERSION'
 node = shutil.which('node')
 assert node, 'Configured Node runtime is required for the authored UI checks'
 subprocess.run([node, str(root/'tests/boss_ui.test.js'), str(root/'UI/boss.js')], check=True)

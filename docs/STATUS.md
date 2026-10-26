@@ -12,6 +12,15 @@
 Готовность оформления и нового AddString identity-расширения в реальном Coherent
 пока не подтверждена; исследовательские диагностики отключены.
 
+Кандидат 0.2.0 установлен при закрытой игре: source
+9211d885d5a0cf7e5e5bb7e845ce192193daa5c8. Точные Lua/pak/HTML-хэши и rollback:
+root ignored `.local/candidates/SoulsEnemyHUD-0.2.0/deployment.json`.
+Pak SHA256: 9C37974EB79CA807A05DC889347232BDA89895C14D56AE65665C05CAA6CAD277.
+Pak содержит только проверенный Hud.html; исходные native/subtitle байты сохранены
+под одним appended addon. Прежний main/policy и лог сохранены вне loader-путей.
+Установленные хэши проверены, mods.txt и z320 не изменены. Первый игровой прогон
+кандидата пока ожидается; main/release не продвигались.
+
 26.10.2026: статически прослежена цепочка NormalHUDBP.UpdateBossStat ->
 GameGlobal.GetSceneGameCharacterWithTag("Boss", ..., false) -> персонаж,
 его DisplayName/CharAttrComponent -> событие Coherent UpdateBossStat -> #BossHP.
