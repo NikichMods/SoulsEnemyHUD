@@ -125,3 +125,82 @@ state to answer this question. Do not launch the game or hot-reload to conduct i
   `7B274C89BE659ABC25E960F6CFFD74D3241B3BDB82C7B07ED33920116C83653B`.
   Automated checks of decoded output confirmed the exact query/tag, source
   fields, outgoing event, and the SubBoss branch's next-instruction target.
+
+## Boss HUD: diagnostic 01 runtime result, 2026-10-27
+
+Status: **partial positive runtime evidence**, not full readiness or visual
+acceptance. The user completed a session and closed the game. Frozen payload:
+`c470c37ee61ccc44d4c56fc71f04d3bc95cb5875`, SHA256
+`F2CBB6E7CC3C14A8E5F5E96919741BC801F7D80C2589FA45DD9343BAC830EE30`.
+Installed probe and production hashes were checked again after the session;
+production still matches the accepted hashes recorded above.
+
+Preserved log: ignored root
+`.local/research/boss-hud/diagnostic-01/run-20261027-014536-UE4SS.log`, SHA256
+`2B07964F753CF88EAB6E130C965F9D3169613CD34FFD1B1301D9699296ED691C`.
+The adjacent `run-20261027-014536-analysis.json` contains the extracted observations
+and session-local addresses. Log session: 01:45:36–01:50:04 MSK, loader enabled
+the expected probe, all five hooks registered, and the log ends `Event loop end`.
+At collection no Genesis/Asterigos process was present. The empty activation
+marker was moved outside the loader into this evidence folder; diagnostic 01 is
+now disabled. Its immutable script and baseline backups remain preserved.
+
+### What the session establishes
+
+- Lines 730–847 contain 116 emitted DISPATCH records for
+  `raveneous_BP_C`, `DisplayName="Пожиратель Ненасытный"`. The internal dispatch
+  counter reaches 1093; this is not 1093 emitted log records.
+- Every emitted record has the same actor, attribute component, NormalHUDBP and
+  Coherent sender component, with `shown=true ready=true`. The observer validated
+  attribute ownership, HUD-component ownership and the HUD's JS-event identity
+  before emitting each record. Native AddObject and TriggerJSEvent hooks operated
+  on the actual host path and did not invoke/reconstruct the outgoing event.
+- All 116 records match that actor to exactly one observed overhead widget via
+  its current `MeterOnHead2.Avatar` identity (`overhead_count=1`). This establishes
+  the engine-side association of the native boss-bar event source and small bar
+  for this boss, independently of the failed query observer.
+- Recorded HP goes from 5880/5880 down to approximately 18.8113/5880. There are
+  81 emitted records with lock-on and 35 without it, including HP changes while
+  unlocked. The source association therefore does not depend on lock-on in this
+  observed encounter.
+- Overhead HPBar.Percent sometimes trails the attribute ratio. For example,
+  line 829 records HP=933.2980/5880 but Percent=0.2693878. These are actual samples
+  at different host update boundaries; they do not by themselves diagnose the
+  rendering or its cause. Do not require instantaneous percentage equality as a
+  boss-identity criterion or derive authoritative damage from animated fill width.
+
+### What failed or remains unknown
+
+- Line 725, 01:46:17: periodic observation stopped on
+  `attribute component owner mismatch` in identity validation. The offending
+  object and lifecycle transition were not logged; the cause is unknown. Failure
+  was contained to that observer, but it also stopped the periodic scheduler,
+  heartbeat and HUD/removal sampling. This containment was too broad for a
+  single stale/mismatched object and must be narrowed in any successor probe.
+- Line 729, 01:47:24: the native-query callback stopped at its expected tag read
+  (`tag:get():ToString()`), reporting `attempt to index a boolean value`.
+  The callback argument shape does not satisfy diagnostic 01's assumption.
+  Actual argument types/order were not recorded, so do not guess a corrected ABI
+  from this error alone. No QUERY output was captured; every dispatch consequently
+  has `query=0 query_member=unknown`. The static Boss-query path remains established,
+  but its live output-array adapter and ordinary-enemy negative control are not.
+- No post-encounter `shown=false`, removal or zero-HP observation was captured.
+  Boss events stop after 01:49:14; another HUD reports combat=false at 01:49:21,
+  but that does not prove this boss HUD's cleanup. Absence of later dispatches is
+  not a verified teardown signal, particularly after the poll failure.
+- This is one boss/source. Multi-boss selection and final JS delivery/DOM ownership
+  remain unverified. The user has not supplied an explicit visible-name/bar result
+  for this session, so the log must not stand in for that visual observation.
+
+### Consequence for the next step
+
+Do not discard the successful source/Avatar association or repeat the whole fight
+to prove it again. Re-open mechanism selection before automatically repairing the
+query adapter: the actual outgoing event already supplies a more direct source
+identity, so a mirrored Boss-query result may be unnecessary for production.
+Whichever mechanism is selected still needs a bounded inactive/active/exit
+observation, safe invalidation and representative failure containment. Isolate
+per-object observation failures and observe the native visibility/lifecycle
+boundary directly; do not infer cleanup from silence. If a query adapter is still
+needed, establish its actual reflected signature/callback argument types first.
+This is the next research scope, not implemented diagnostic 02 or a READY gate.
