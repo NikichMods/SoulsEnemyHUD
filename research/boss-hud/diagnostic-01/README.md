@@ -43,7 +43,7 @@ old; it is `unknown` otherwise. It does not claim query call-stack provenance.
   edit to shared mods.txt; all object access waits for existing reflected functions.
 - Payload id: `boss-link-diagnostic-01`. Once installed/handed, these script bytes
   are immutable; a changed probe gets a new diagnostic number. This research id
-  does not increment SoulsEnemyHUD/VERSION or claim a new production release.
+  does not increment VERSION or claim a new production release.
 - Script SHA256:
   `F2CBB6E7CC3C14A8E5F5E96919741BC801F7D80C2589FA45DD9343BAC830EE30`.
 - Exact source commit, installed hash and preserved pre-test log/baseline belong in
@@ -90,7 +90,7 @@ It does not measure JS delivery order, DOM state, animation or rendered font/col
 The user's visible-name/bar observation is still needed. Multiple-source dispatch
 order alone must not be promoted to proven final rendering ownership.
 
-Offline verification: `python tools/test.py SoulsEnemyHUD` from the repository root
+Offline verification: `python tools/test.py` from the repository root
 with the configured external Lupa2.8 environment. Strict read-only mocks cover
 matching/negative sources, multiple bosses, stale events, return-value preservation,
 isolated errors, deferred hooks and bounded lifetime. They do not prove binding in
