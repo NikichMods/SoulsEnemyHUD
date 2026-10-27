@@ -471,3 +471,27 @@ Lua/pak hashes match candidate files. z320 and mods.txt are unchanged; no game
 launch/termination, hot reload or replacement of published 0.3.1 assets occurred.
 Source/build/pretest log/rollback identity is in ignored candidate deployment.json.
 Stable main/release stays at 0.3.1 until explicit acceptance of the new appearance.
+
+## 0.3.2 stopped; exact stable 0.3.1 restored — 2026-10-28
+
+User reports that the right-to-left entrance effect is unchanged in 0.3.2 and
+explicitly declines further investigation because the 0.3.1 appearance is
+acceptable. A video reference was supplied and retained privately; it was not
+analyzed for root cause in this stopping segment. The observation disproves
+this candidate's effectiveness in the user's host, not a particular engine cause.
+No verified quick fix is established; this does not prove that none can exist.
+
+0.3.2 is not accepted, not released and not to be merged into stable main. Keep
+its immutable source/payload and branch as historical evidence, with no automatic
+continuation. The chosen stable behavior remains 0.3.1, including the cosmetic
+entrance quirk. Reopen only on a new explicit request or materially new evidence
+with user agreement; do not create a fresh probe on this user's behalf now.
+
+The game was closed. Installed 0.3.2 hashes and its saved 0.3.1 backup were checked
+before rollback. Restored main.lua/policy.lua/boss.lua and z330 hashes match the
+published accepted 0.3.1 manifest. Pak SHA256:
+288EBE6DF6018A4067BE2CBE45951EF103D6E708E4065EB08D8E0785E832FA3F.
+The 0.3.2 payload remains preserved; current logs were snapshotted without a new
+diagnostic investigation. z320/mods.txt unchanged; no launch/termination/rebuild.
+Ignored stopped-20261028/rollback.json records exact hashes and the private video
+reference.
