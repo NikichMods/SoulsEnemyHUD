@@ -18,3 +18,12 @@ All original published tags and Releases remain at AsterigosMods with unchanged 
 The six modules were separated as siblings under a local game group without a parent Git repository. Existing busy source directories were not renamed or overwritten. Owner-specific ignored candidates, rollback and local evidence were copied with SHA-256 verification; the complete historical archive and original .local remain intact. Private paths and manifests are excluded from public Git.
 
 Independent validation and final GitHub revisions are recorded in the migration report and VALIDATION.md. No fully standalone proprietary asset packaging is claimed. Shared research: [canonical index](https://github.com/NikichMods/Asterigos-Research/blob/main/docs/RESEARCH_INDEX.md).
+
+## Preserved feature import at stable 0.3.1 promotion
+
+The main import provenance/validation above remains unchanged. The separately
+extracted feature branch is retained in IMPORT_PROVENANCE-feature-boss-aphes-name.json
+and VALIDATION-feature-boss-aphes-name.md. Stable 0.3.1 merges that feature history;
+its exact tested runtime source and release payload are recorded in RELEASE-0.3.1.md.
+No migration manifest is rewritten to pretend that the 0.3.1 runtime was imported
+as stable 0.2.0. Original refs and artifact hashes remain intact.

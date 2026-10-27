@@ -12,4 +12,4 @@ One writer per checkout; concurrent writers use separate worktrees. Serialize de
 
 Only original source and authored patches enter public Git. Host HTML/assets, fonts, dumps, saves, credentials, tools and third-party payloads remain external/ignored under .local. MPL-2.0 scope is in LICENSING.md; do not infer redistribution rights for host-derived packages. Local paths belong in .local/environment.json.
 
-Stable main remains accepted 0.2.0; public installer publication is deferred. feature/boss-aphes-name preserves unaccepted 0.3.0 and user feedback; do not promote it. Local z330 composes the exact SubtitleSoftEdges HTML input; see docs/LOCAL_DEPENDENCIES.md.
+Stable version is accepted 0.3.1. The user authorized its exact Lua/composed-pak public release on 2026-10-28; see docs/RELEASE-0.3.1.md. The rejected 0.3.0 remains historical evidence, not a release. Host-derived package rights remain separate from MPL-covered authored code; see LICENSING.md. Local z330 composes the exact SubtitleSoftEdges HTML input; see docs/LOCAL_DEPENDENCIES.md.

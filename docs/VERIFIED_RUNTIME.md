@@ -319,3 +319,128 @@ commit with no differences. Only current-state documentation changed afterward.
 Existing offline checks and live acceptance remain applicable; no verification
 rebuild, payload replacement, game launch or repeated gameplay test was needed.
 GitHub Release and public host-derived installer assets are explicitly deferred.
+
+## Candidate 0.3.0 installed — runtime acceptance pending, 2026-10-27
+
+Source `16310410a44c3498a4a0b9def3b48345c8c086fc`, feature/boss-aphes-name.
+User adopted side damage and large short / automatically fitted long decorative
+Aphes name. The user delegated spelling to simplicity/reliability; the addon
+transliterates the supplied Russian DisplayName without extra native queries.
+
+All SoulsEnemyHUD offline checks passed. A local browser exercised the actual
+authored CSS/JS with extracted game fonts across 24 combinations: three names
+(including the observed current boss), two damage amounts, four viewports.
+No layout overflow/overlap or script errors in those cases. These are browser
+checks, not proof of Coherent resource loading or real host rendering.
+
+The game was closed before installation. Original 0.2.0 Lua/pak hashes were
+compared against its accepted manifest. Prior main.lua/policy.lua/boss.lua and
+z330 were copied to the new candidate's previous-payload outside loader paths
+and verified. Candidate sources were clean at build/install; the pak hash-list
+contained only `Genesis/Content/uiresources/Hud.html`, content SHA256
+`B4736DF94C6491085CAED9454E8AF6033D510CABE29DEE0E8D0B376F46E635B0`.
+Removing the single authored addon recovers exact accepted subtitle input bytes.
+No fonts are included. Installed Lua and pak hashes were compared with candidate
+payloads. Pak SHA256:
+`870361D4BD6D3D4C47FB1CB461E7E736BCD71CA405C6CDA499F3732BB18B476E`.
+policy.lua and boss.lua retain the accepted 0.2.0 bytes; main.lua changes only its
+version/status log. Subtitle z320 and mods.txt hashes are unchanged.
+
+Exact installation/hashes/build command/pretest log identity are in ignored
+`.local/candidates/SoulsEnemyHUD-0.3.0/deployment.json`; the pretest log was
+preserved before any new run. The game was not launched or terminated. No runtime
+result is claimed yet: verify Aphes glyphs, fit/margins and side damage in game.
+0.2.0 remains the accepted stable source in main; no public release was created.
+
+## User feedback on 0.3.0 — not accepted, 2026-10-28
+
+The user supplied three 2560x1440 screenshots. The first two show ordinary readable
+Latin `POZHIRATEL NENASYTNYY` above the boss bar; the second has visibly different
+width/tracking despite the same spelling. The third shows native Aphes-looking
+glyphs above localized location names and is the desired visual reference.
+This establishes a mismatch with the requested appearance and a reported layout
+instability. It does not establish failed font resource loading, native CSS
+overrides, font timing, changed viewport, or HP-dependent width as the cause.
+The captured frames do not independently establish side-damage acceptance.
+
+Static inspection of the unchanged candidate: `layout()` gets bounds from outer
+`#BossHP`; it does not read `.cur_val` width. It can run after a changed damage
+string, name, resize, optional font notification and the bounded delayed refit.
+Repeated layout resets maximum size/tracking before fitting. These are code facts,
+not a proved diagnosis of either screenshot symptom. A new investigation must
+observe the actual host font/style/layout path rather than assume a cause.
+
+The current pak and main.lua hashes still match the 0.3.0 deployment manifest.
+No new build, installation, game launch or code mutation occurred in this handoff.
+Raw screenshots and their hashes are preserved only under ignored
+`.local/candidates/SoulsEnemyHUD-0.3.0/feedback-20261028/`. No screenshot/game payload
+was added to Git. The previous immutable 0.2.0 rollback is retained.
+
+Updated desired behavior belongs to REQUIREMENTS.md: real decorative glyph
+appearance, full-bar width cap of 90%, stable size/tracking for unchanged name and
+display, native lower name and side damage preserved. Source text semantics are
+not established by font cmap alone. Reuse Asterigos-Research R-007 and the native
+ShowPlaceName/stageAphes/placeAphes findings before fresh investigation. No new
+shared technical result was proved here; R-007 already owns the reusable font fact.
+
+## Candidate 0.3.1 installed — runtime acceptance pending, 2026-10-28
+
+Independent source `9f2cf4e6e75b665c3f1cb5573acf701583c98a1c`, branch
+feature/boss-aphes-name. Native basic.css defines `.AphesText` with
+`font-family: var(--font-family-aphes), monospace`, where the variable is
+`Aphes, EBGBold`. Native location-name elements use this class. The candidate
+reuses it instead of the added font-face alias. This is a directly inspected
+source path, not a proved diagnosis of the 0.3.0 fallback or new host acceptance.
+
+Fitting now uses constant base font/tracking and untransformed offsetWidth,
+with uniform scale capped at 90% of the outer bar. Damage rendering never invokes
+name fitting. All repository tests passed. Browser checks of actual authored
+CSS/JS with locally supplied native-named Aphes verified 24 combinations of
+names, damage and viewports, including changing fill/HP/damage and repeated
+resize/refit; no fitting/stability failures or script errors. The browser font
+fixture supplies Aphes and therefore cannot establish the host's font registration.
+
+Pak contains only Genesis/Content/uiresources/Hud.html. Content SHA256:
+`6D4231D7C008D5A055B5FCE384784F8B782C053D4C06067EBBB0F0223E8CB00A`.
+Pak SHA256: `288EBE6DF6018A4067BE2CBE45951EF103D6E708E4065EB08D8E0785E832FA3F`.
+Removing the addon recovers the exact accepted subtitle input. No font is bundled.
+Installation checked a closed host, exact old 0.3.0 hashes, verified rollback
+outside loader paths and exact newly installed Lua/pak hashes. policy/boss Lua
+are unchanged; main.lua changes only version logging. Subtitle z320 and mods.txt
+are unchanged. Source/build/input/payload/pretest-log identity is in ignored
+`.local/candidates/SoulsEnemyHUD-0.3.1/deployment.json`. The 0.2.0 and 0.3.0
+numbered artifacts were not overwritten or rebuilt. No game launch/termination.
+
+In-game acceptance must still check glyphs match the native reference, side
+damage placement and stable title size/tracking after hits. Exact old Coherent
+font/metric failure remains unknown; do not describe this source change as a
+verified root-cause diagnosis. Stable main remains accepted 0.2.0.
+
+## 0.3.1 runtime acceptance and stable release authorization — 2026-10-28
+
+The user explicitly accepted the complete tested appearance: «С визуальной точки
+зрения всё идеально ... подтверждаю, принимаю», and authorized stable main and
+release if log checks were clean. Screenshot shows the intended decorative glyphs
+above the localized native name. Exact installed Lua and pak match the 0.3.1
+manifest; no rebuild or replacement occurred.
+
+Preserved session: 01:46:01–01:50:17 MSK, 2026-10-28. UE4SS line 649 loads 0.3.1,
+line 730 records SEH1 binding to raveneous_BP_C. All 44 module records were
+reviewed: no module error, disabled integration, fallback or restore-after-error.
+Ordinary-enemy adapter records remain present. The session ends Event loop end;
+no game process was present during collection. Native log contains no TypeError,
+ReferenceError, SyntaxError or unhandled exception. Existing coherent.js version
+mismatch/missing system-font/input-image warnings also appear in the prior log;
+this review does not diagnose them as introduced by this mod.
+
+UE4SS SHA256: FFE35857DD194EF38D9CDBBEE39F84715CC1972B97E1F909243D49EF842C4F66.
+Native log SHA256: A68358ACAF79663C8C3302D3025DA204BB315783A022ECCB315CCF3FF28BC766.
+Screenshot SHA256: 2267FB5DD0DA1D9D4E90726C4C566E7E92F7D938CF571EF50E2A0516587EAB36.
+Raw logs/screenshot and analysis remain ignored under the candidate's
+acceptance-20261028 directory. Visual stability/layout is accepted from the user's
+report; the production log does not independently measure every glyph/frame.
+Victory and simultaneous bosses are not newly claimed. The old 0.3.0 alias/metric
+root cause is still not proved by the successful corrected implementation.
+
+Source freeze: 9f2cf4e6e75b665c3f1cb5573acf701583c98a1c.
+Exact release packaging/asset hashes belong to RELEASE-0.3.1.md.
