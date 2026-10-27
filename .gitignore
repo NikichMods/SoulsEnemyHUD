@@ -1,0 +1,17 @@
+.local/
+artifacts/
+__pycache__/
+*.pyc
+.venv/
+*.pak
+*.ucas
+*.utoc
+*.uasset
+*.uexp
+*.ubulk
+*.dll
+*.zip
+*.sav
+*.ttf
+*.woff*
+aes.txt
