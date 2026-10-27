@@ -23,6 +23,8 @@ Tested on Steam 1.09/build12996889, Windows x64, UE4.27, with UE4SS v3.0.1-1181-
 
 The package replaces the complete `Hud.html` resource. Other mods replacing that resource need a compatible combined version; load order alone does not merge edits. The bundled resource already includes SubtitleSoftEdges: disabling a separate subtitle pak does not remove that style while this package is active.
 
+The decorative boss inscription can shift horizontally as it appears; this is an accepted cosmetic limitation.
+
 To uninstall, close the game, remove the `SoulsEnemyHUD` mod folder and `z330_SoulsEnemyHUD_P.pak`. If manually added, remove its `mods.txt` entry. Leave other mods and UE4SS files intact.
 
 Original project code is MPL-2.0; game-owned content in the modified HUD retains its original rights and is not covered by that license. Fonts and third-party loader binaries are not included. See [LICENSING.md](LICENSING.md).

@@ -444,3 +444,20 @@ root cause is still not proved by the successful corrected implementation.
 
 Source freeze: 9f2cf4e6e75b665c3f1cb5573acf701583c98a1c.
 Exact release packaging/asset hashes belong to RELEASE-0.3.1.md.
+
+## Accepted cosmetic limitation and rollback from stopped 0.3.2 — 2026-10-28
+
+The user reports no improvement in the entrance-motion symptom with candidate
+0.3.2 (source 5f66576ed1259ac724a4eec182e5cb3dd6405c97). They accept the 0.3.1
+visual quirk and explicitly stop further investigation. Exact Coherent cause
+remains unknown, with no verified quick fix. This does not establish impossibility
+of a fix. Keep feature/boss-name-appearance as a stopped, unaccepted experiment;
+it must not be merged or resumed automatically. Its documentation records the
+negative user test and private video reference; no frame analysis was performed.
+
+With the host closed, the installed 0.3.2 payload and saved 0.3.1 rollback were
+hash-checked, then exact published 0.3.1 Lua and pak were restored and verified.
+Pak SHA256: 288EBE6DF6018A4067BE2CBE45951EF103D6E708E4065EB08D8E0785E832FA3F.
+Current UI/source/version match v0.3.1; published release assets are unchanged.
+The failed candidate and logs remain ignored under its stopped-20261028 evidence
+directory; z320/mods.txt unchanged. No new probe, game launch/termination or build.
