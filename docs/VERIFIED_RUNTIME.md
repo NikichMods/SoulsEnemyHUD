@@ -382,3 +382,36 @@ display, native lower name and side damage preserved. Source text semantics are
 not established by font cmap alone. Reuse Asterigos-Research R-007 and the native
 ShowPlaceName/stageAphes/placeAphes findings before fresh investigation. No new
 shared technical result was proved here; R-007 already owns the reusable font fact.
+
+## Candidate 0.3.1 installed — runtime acceptance pending, 2026-10-28
+
+Independent source `9f2cf4e6e75b665c3f1cb5573acf701583c98a1c`, branch
+feature/boss-aphes-name. Native basic.css defines `.AphesText` with
+`font-family: var(--font-family-aphes), monospace`, where the variable is
+`Aphes, EBGBold`. Native location-name elements use this class. The candidate
+reuses it instead of the added font-face alias. This is a directly inspected
+source path, not a proved diagnosis of the 0.3.0 fallback or new host acceptance.
+
+Fitting now uses constant base font/tracking and untransformed offsetWidth,
+with uniform scale capped at 90% of the outer bar. Damage rendering never invokes
+name fitting. All repository tests passed. Browser checks of actual authored
+CSS/JS with locally supplied native-named Aphes verified 24 combinations of
+names, damage and viewports, including changing fill/HP/damage and repeated
+resize/refit; no fitting/stability failures or script errors. The browser font
+fixture supplies Aphes and therefore cannot establish the host's font registration.
+
+Pak contains only Genesis/Content/uiresources/Hud.html. Content SHA256:
+`6D4231D7C008D5A055B5FCE384784F8B782C053D4C06067EBBB0F0223E8CB00A`.
+Pak SHA256: `288EBE6DF6018A4067BE2CBE45951EF103D6E708E4065EB08D8E0785E832FA3F`.
+Removing the addon recovers the exact accepted subtitle input. No font is bundled.
+Installation checked a closed host, exact old 0.3.0 hashes, verified rollback
+outside loader paths and exact newly installed Lua/pak hashes. policy/boss Lua
+are unchanged; main.lua changes only version logging. Subtitle z320 and mods.txt
+are unchanged. Source/build/input/payload/pretest-log identity is in ignored
+`.local/candidates/SoulsEnemyHUD-0.3.1/deployment.json`. The 0.2.0 and 0.3.0
+numbered artifacts were not overwritten or rebuilt. No game launch/termination.
+
+In-game acceptance must still check glyphs match the native reference, side
+damage placement and stable title size/tracking after hits. Exact old Coherent
+font/metric failure remains unknown; do not describe this source change as a
+verified root-cause diagnosis. Stable main remains accepted 0.2.0.
