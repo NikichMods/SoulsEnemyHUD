@@ -319,3 +319,35 @@ commit with no differences. Only current-state documentation changed afterward.
 Existing offline checks and live acceptance remain applicable; no verification
 rebuild, payload replacement, game launch or repeated gameplay test was needed.
 GitHub Release and public host-derived installer assets are explicitly deferred.
+
+## Candidate 0.3.0 installed — runtime acceptance pending, 2026-10-27
+
+Source `16310410a44c3498a4a0b9def3b48345c8c086fc`, feature/boss-aphes-name.
+User adopted side damage and large short / automatically fitted long decorative
+Aphes name. The user delegated spelling to simplicity/reliability; the addon
+transliterates the supplied Russian DisplayName without extra native queries.
+
+All SoulsEnemyHUD offline checks passed. A local browser exercised the actual
+authored CSS/JS with extracted game fonts across 24 combinations: three names
+(including the observed current boss), two damage amounts, four viewports.
+No layout overflow/overlap or script errors in those cases. These are browser
+checks, not proof of Coherent resource loading or real host rendering.
+
+The game was closed before installation. Original 0.2.0 Lua/pak hashes were
+compared against its accepted manifest. Prior main.lua/policy.lua/boss.lua and
+z330 were copied to the new candidate's previous-payload outside loader paths
+and verified. Candidate sources were clean at build/install; the pak hash-list
+contained only `Genesis/Content/uiresources/Hud.html`, content SHA256
+`B4736DF94C6491085CAED9454E8AF6033D510CABE29DEE0E8D0B376F46E635B0`.
+Removing the single authored addon recovers exact accepted subtitle input bytes.
+No fonts are included. Installed Lua and pak hashes were compared with candidate
+payloads. Pak SHA256:
+`870361D4BD6D3D4C47FB1CB461E7E736BCD71CA405C6CDA499F3732BB18B476E`.
+policy.lua and boss.lua retain the accepted 0.2.0 bytes; main.lua changes only its
+version/status log. Subtitle z320 and mods.txt hashes are unchanged.
+
+Exact installation/hashes/build command/pretest log identity are in ignored
+`.local/candidates/SoulsEnemyHUD-0.3.0/deployment.json`; the pretest log was
+preserved before any new run. The game was not launched or terminated. No runtime
+result is claimed yet: verify Aphes glyphs, fit/margins and side damage in game.
+0.2.0 remains the accepted stable source in main; no public release was created.
