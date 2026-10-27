@@ -444,3 +444,30 @@ root cause is still not proved by the successful corrected implementation.
 
 Source freeze: 9f2cf4e6e75b665c3f1cb5573acf701583c98a1c.
 Exact release packaging/asset hashes belong to RELEASE-0.3.1.md.
+
+## 0.3.2 appearance candidate — runtime pending, 2026-10-28
+
+User reported a right-to-left entrance motion and requested plain appearance.
+No explicit slide animation was found in addon CSS/JS; native AphesText selects
+only the font, while location-name animations are scoped to PlaceName. This does
+not establish the exact Coherent cause. Initial title creation precedes fitting
+in 0.3.1; its transform combines centering translation and scale.
+
+Candidate 0.3.2 keeps the wrapper hidden before attachment/text updates, centers
+with native-supported flex layout, uses scale without translation, and disables
+animations/transitions only on its two title nodes. Native bar visibility/HP
+animation, font, max width, margins and side damage are preserved. All repository
+tests passed. 24 browser cases passed fitting/stability and initial-frame
+geometry/no-animation checks with preloaded Aphes; these do not prove Coherent
+behavior or diagnose the prior symptom. In-game acceptance is still required.
+
+Exact source: 5f66576ed1259ac724a4eec182e5cb3dd6405c97.
+Pak SHA256: 1E8B874CD0C8211D82C8BF421355DA324F7CD7D6B42CB1698C7056A0C9C82AC0.
+Only staged Genesis/Content/uiresources/Hud.html is packaged; content SHA256:
+6CFB87BD43A5D01828739AE71FD4678B560332983F477F9332F4F19F301C967F.
+Exact subtitle input preservation remains verified. Installed with closed host
+after 0.3.1 hash checks and verified backup outside loader paths. Installed
+Lua/pak hashes match candidate files. z320 and mods.txt are unchanged; no game
+launch/termination, hot reload or replacement of published 0.3.1 assets occurred.
+Source/build/pretest log/rollback identity is in ignored candidate deployment.json.
+Stable main/release stays at 0.3.1 until explicit acceptance of the new appearance.
