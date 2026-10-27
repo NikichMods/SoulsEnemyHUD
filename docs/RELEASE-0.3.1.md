@@ -23,3 +23,14 @@ Logs, screenshot and visual/user acceptance are recorded in VERIFIED_RUNTIME.md.
 Victory/multiple simultaneous bosses are not newly claimed. The native font class
 now renders the desired glyphs in the accepted session; the exact 0.3.0 failure
 was not retrospectively diagnosed.
+
+## Publication verification
+
+Published stable GitHub Release on 2026-10-28; draft=false, prerelease=false.
+Public ZIP and SHA256SUMS.txt were downloaded and SHA-256 compared to the local
+verified assets: both matched the values above. Stable source promotion commit
+`674f7ed` contains the exact accepted runtime plus documentation only.
+The tag v0.3.1 targets the tested runtime source, not a rebuild.
+
+- [Download ZIP](https://github.com/NikichMods/SoulsEnemyHUD/releases/download/v0.3.1/SoulsEnemyHUD-0.3.1.zip)
+- [SHA256SUMS.txt](https://github.com/NikichMods/SoulsEnemyHUD/releases/download/v0.3.1/SHA256SUMS.txt)
