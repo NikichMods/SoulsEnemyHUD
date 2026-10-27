@@ -415,3 +415,32 @@ In-game acceptance must still check glyphs match the native reference, side
 damage placement and stable title size/tracking after hits. Exact old Coherent
 font/metric failure remains unknown; do not describe this source change as a
 verified root-cause diagnosis. Stable main remains accepted 0.2.0.
+
+## 0.3.1 runtime acceptance and stable release authorization — 2026-10-28
+
+The user explicitly accepted the complete tested appearance: «С визуальной точки
+зрения всё идеально ... подтверждаю, принимаю», and authorized stable main and
+release if log checks were clean. Screenshot shows the intended decorative glyphs
+above the localized native name. Exact installed Lua and pak match the 0.3.1
+manifest; no rebuild or replacement occurred.
+
+Preserved session: 01:46:01–01:50:17 MSK, 2026-10-28. UE4SS line 649 loads 0.3.1,
+line 730 records SEH1 binding to raveneous_BP_C. All 44 module records were
+reviewed: no module error, disabled integration, fallback or restore-after-error.
+Ordinary-enemy adapter records remain present. The session ends Event loop end;
+no game process was present during collection. Native log contains no TypeError,
+ReferenceError, SyntaxError or unhandled exception. Existing coherent.js version
+mismatch/missing system-font/input-image warnings also appear in the prior log;
+this review does not diagnose them as introduced by this mod.
+
+UE4SS SHA256: FFE35857DD194EF38D9CDBBEE39F84715CC1972B97E1F909243D49EF842C4F66.
+Native log SHA256: A68358ACAF79663C8C3302D3025DA204BB315783A022ECCB315CCF3FF28BC766.
+Screenshot SHA256: 2267FB5DD0DA1D9D4E90726C4C566E7E92F7D938CF571EF50E2A0516587EAB36.
+Raw logs/screenshot and analysis remain ignored under the candidate's
+acceptance-20261028 directory. Visual stability/layout is accepted from the user's
+report; the production log does not independently measure every glyph/frame.
+Victory and simultaneous bosses are not newly claimed. The old 0.3.0 alias/metric
+root cause is still not proved by the successful corrected implementation.
+
+Source freeze: 9f2cf4e6e75b665c3f1cb5573acf701583c98a1c.
+Exact release packaging/asset hashes belong to RELEASE-0.3.1.md.

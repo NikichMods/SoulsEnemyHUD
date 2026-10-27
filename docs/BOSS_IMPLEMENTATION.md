@@ -1,4 +1,8 @@
-# Boss behavior 0.2.0
+# Boss behavior — stable 0.3.1
+
+0.3.1 was accepted in game on 2026-10-28 and authorized for public release.
+See RELEASE-0.3.1.md for exact source/package identity. The following readiness
+and candidate entries preserve their original evidence boundaries.
 
 ## Candidate 0.3.0: decorative name and side damage (runtime pending)
 

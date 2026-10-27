@@ -2,7 +2,7 @@
 
 MPL-2.0 (LICENSE) applies to original Lua policies/adapters, Python tests/tools and the authored CSS patch. They were authored in the user's local development session; no external source contribution was identified in the imported files. No copied UEHelpers or loader source is included. License notice for each mod folder (including its tests) and tools/: SPDX-License-Identifier: MPL-2.0. A directory notice preserves the imported runtime bytes without modifying accepted Lua files.
 
-Game code/assets, fonts (including EB Garamond/Roboto/Aphes), extracted HTML, render-target assets, UE4SS, CUE4Parse, repak/retoc, Lupa and third-party costume/texture mods retain their respective rights. They are not relicensed or bundled here. The repository contains asset references and authored patches only. The root MPL text was copied unchanged from the existing DetailedTechnologyTooltips repository's standard MPL-2.0 LICENSE. The user authorized public source hosting on 2026-10-26. CombatHUD 0.2.0 packages only original Lua and license/installation metadata under MPL-2.0, with UE4SS/UEHelpers supplied separately. This original-code release does not include game resources. Public packaging of host-derived files has not been authorized or cleared.
+Game code/assets, fonts (including EB Garamond/Roboto/Aphes), extracted HTML, render-target assets, UE4SS, CUE4Parse, repak/retoc, Lupa and third-party costume/texture mods retain their respective rights. They are not relicensed or bundled here. The repository contains asset references and authored patches only. The root MPL text was copied unchanged from the existing DetailedTechnologyTooltips repository's standard MPL-2.0 LICENSE. The user authorized public source hosting on 2026-10-26. CombatHUD 0.2.0 packages only original Lua and license/installation metadata under MPL-2.0, with UE4SS/UEHelpers supplied separately. This original-code release does not include game resources. The user authorized public distribution of the exact tested 0.3.1 composed HUD package on 2026-10-28. This is a project distribution decision, not evidence of rights-holder permission or an extension of MPL to game content.
 
 While actively maintained, upstream issues/PRs are preferred; community maintenance is welcome if unmaintained. This is etiquette, not an additional license restriction.
 
@@ -38,10 +38,13 @@ other game resources or fonts. [Steam's official support listing](https://help.s
 provides an Acme Gamestudio contact for clarification. No inquiry was sent.
 The user explicitly declined contacting the developers on 2026-10-27. Do not
 treat such an inquiry as a pending task or a required next step. This decision
-does not establish rights-holder permission or itself authorize publishing a
-package; distribution remains a separate user decision.
+does not establish rights-holder permission. The later explicit 2026-10-28
+stable-release instruction authorizes this project to publish the exact tested
+0.3.1 package; it does not resolve the external legal uncertainty.
 No new installer architecture is adopted by this research; public host-derived
-packaging remains uncleared. Source publication and accepted runtime behavior
-are unchanged. The current local combined subtitle/boss HTML is documented in
+rights-holder clearance remains unconfirmed. The public 0.3.1 ZIP includes the
+exact tested complete modified Hud.html inside z330, alongside original Lua and
+license/install metadata; no fonts, loader binaries or other game resources are
+bundled. Game-owned portions retain their rights and are excluded from MPL. The current local combined subtitle/boss HTML is documented in
 [SoulsEnemyHUD build composition](https://github.com/NikichMods/SoulsEnemyHUD/blob/main/docs/BOSS_IMPLEMENTATION.md); that composition is a compatibility
 build choice, not an inherent dependency between the two mods.
