@@ -3,7 +3,7 @@
     "use strict";
     if (window.SoulsEnemyHUDBoss) return;
     var state = null, text = null, timer = null, title = null, letters = null;
-    var titleValue = "", layoutTimer = null, lastDamage = null;
+    var titleValue = "", lastDamage = null;
     // Aphes maps Latin characters to decorative glyphs; never translate or replace
     // the native localized name. Unsupported scripts simply omit this decoration.
     var cyrillic = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
@@ -23,7 +23,6 @@
         titleValue = "";
         if (letters) letters.textContent = "";
         if (title) title.style.visibility = "hidden";
-        if (layoutTimer !== null) { clearTimeout(layoutTimer); layoutTimer = null; }
     }
     function element() {
         var bar = document.getElementById("BossHP");
@@ -38,44 +37,43 @@
             title = document.createElement("div");
             title.id = "SoulsEnemyHUDBossName";
             letters = document.createElement("span");
+            letters.className = "AphesText";
             title.appendChild(letters);
             bar.appendChild(title);
         }
         return text;
     }
-    function layout() {
-        if (!text || !title) return;
-        var bar = document.getElementById("BossHP"), name = document.getElementById("BossName");
-        var height = window.innerHeight, width = window.innerWidth;
-        if (!bar || !name || !height || !width) return;
-        var bounds = bar.getBoundingClientRect(), available = bounds.width - height * 0.02;
-        if (available <= 0) return;
-        var size = height * 0.0454;
-        letters.style.fontSize = size + "px";
-        letters.style.letterSpacing = "0.25em";
-        if (letters.getBoundingClientRect().width > available) {
-            letters.style.letterSpacing = "0.08em";
-            var natural = letters.getBoundingClientRect().width;
-            if (natural > available) letters.style.fontSize = (size * available / natural) + "px";
-        }
+    function layoutName() {
+        if (!title || !letters) return;
+        var bar = document.getElementById("BossHP");
+        if (!bar) return;
+        // offsetWidth ignores our transform. The base font/tracking never changes,
+        // so repeated fitting cannot feed its own previous result back into itself.
+        var available = bar.getBoundingClientRect().width * 0.90 - 1;
+        var natural = letters.offsetWidth;
+        if (available <= 0 || natural <= 0) { title.style.visibility = "hidden"; return; }
+        var scale = Math.min(1, available / natural);
+        letters.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
         title.style.visibility = titleValue ? "inherit" : "hidden";
+    }
+    function layoutDamage() {
+        if (!text) return;
+        var bar = document.getElementById("BossHP"), name = document.getElementById("BossName");
+        if (!bar || !name) return;
         text.style.fontSize = window.getComputedStyle(name).fontSize;
-        var room = width - bounds.right - height * 0.0255;
+        var room = window.innerWidth - bar.getBoundingClientRect().right - window.innerHeight * 0.0255;
         var damageWidth = text.getBoundingClientRect().width;
         if (room > 0 && damageWidth > room) {
             text.style.fontSize = (parseFloat(text.style.fontSize) * room / damageWidth) + "px";
         }
     }
+    function layout() { layoutName(); layoutDamage(); }
     function setName(value) {
         var next = inscription(value);
         if (!element() || next === titleValue) return;
         titleValue = next;
         letters.textContent = next;
-        layout();
-        // Older Coherent may lack FontFaceSet. One bounded refit after first use
-        // covers font loading there; subsequent native name events do not poll DOM.
-        if (layoutTimer !== null) clearTimeout(layoutTimer);
-        layoutTimer = setTimeout(function () { layoutTimer = null; layout(); }, 1000);
+        layoutName();
     }
     function render() {
         timer = null;
@@ -84,7 +82,7 @@
         var t = Math.max(0, Math.min(1, (elapsed - 1.2) / 0.3));
         var alpha = 1 - t * t * (3 - 2 * t);
         text.textContent = state.sum > 0 ? String(Math.floor(state.sum + 0.5)) : "";
-        if (lastDamage !== text.textContent) { lastDamage = text.textContent; layout(); }
+        if (lastDamage !== text.textContent) { lastDamage = text.textContent; layoutDamage(); }
         text.style.opacity = String(state.sum > 0 ? alpha : 0);
         if (state.sum > 0 && alpha > 0) timer = setTimeout(render, 16);
     }

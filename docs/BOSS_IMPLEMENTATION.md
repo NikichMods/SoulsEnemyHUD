@@ -116,3 +116,24 @@ The user accepted the tested 0.2.0 appearance/behavior as ideal; the loader log
 confirms source binding without mod errors. Do not treat the production log as
 independent frame-by-frame visual/timing telemetry; see the preserved session and
 exact payload identity in VERIFIED_RUNTIME.md.
+
+## 0.3.1 readiness checkpoint (2026-10-28, runtime pending)
+
+READY before mutation: native `basic.css` owns `.AphesText` and resolves
+`--font-family-aphes: Aphes, EBGBold`; native Hud.html location-name spans use
+that class and the user's reference shows its glyph rendering. Reuse that exact
+class, removing the independent alias/font URL introduced in 0.3.0. This avoids
+an additional resource request; it does not prove why the old alias rendered
+Latin. The native language/text supplied to location names is separate from the
+font cmap; no fictional translation is claimed.
+
+READY for stable fitting: final writers are the addon span style and measured
+outer BossHP width. Keep a constant base font/tracking and measure untransformed
+`offsetWidth`, then apply a uniform transform capped at 90% of the full bar.
+Separate name fitting from the damage renderer. Name changes, display resize and
+optional font-ready events can refit; HP and changing damage strings cannot.
+Preserve native lower name, bar geometry, lifetime/identity, side damage timing,
+ordinary enemies and subtitle composition. Test real CSS with native class and
+font plus changed fill widths/damage; host rendering still needs acceptance.
+The exact old Coherent font/metric failure remains undiagnosed; this is a narrow
+replacement of the defective integration, not a verified causal explanation.
