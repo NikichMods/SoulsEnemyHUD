@@ -36,6 +36,7 @@
         if (!title) {
             title = document.createElement("div");
             title.id = "SoulsEnemyHUDBossName";
+            title.style.visibility = "hidden";
             letters = document.createElement("span");
             letters.className = "AphesText";
             title.appendChild(letters);
@@ -53,7 +54,7 @@
         var natural = letters.offsetWidth;
         if (available <= 0 || natural <= 0) { title.style.visibility = "hidden"; return; }
         var scale = Math.min(1, available / natural);
-        letters.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
+        letters.style.transform = "scale(" + scale + ")";
         title.style.visibility = titleValue ? "inherit" : "hidden";
     }
     function layoutDamage() {
@@ -72,6 +73,7 @@
         var next = inscription(value);
         if (!element() || next === titleValue) return;
         titleValue = next;
+        title.style.visibility = "hidden";
         letters.textContent = next;
         layoutName();
     }

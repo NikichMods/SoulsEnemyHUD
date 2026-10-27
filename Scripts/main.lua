@@ -295,7 +295,7 @@ local function hideFloating(hud)
     end
 end
 
-log("Loaded 0.3.1; compact enemies and boss bridge; Aphes boss name; runtime acceptance pending")
+log("Loaded 0.3.2; compact enemies and boss bridge; Aphes boss name; runtime acceptance pending")
 LoopAsync(1000,function()
     if pending then return false end
     pending=true

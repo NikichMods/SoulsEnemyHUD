@@ -141,3 +141,20 @@ ordinary enemies and subtitle composition. Test real CSS with native class and
 font plus changed fill widths/damage; host rendering still needs acceptance.
 The exact old Coherent font/metric failure remains undiagnosed; this is a narrow
 replacement of the defective integration, not a verified causal explanation.
+
+## 0.3.2 appearance readiness (2026-10-28, runtime pending)
+
+User requested plain appearance without horizontal travel. READY for a scoped
+appearance change: addon CSS and layoutName own the title's final placement;
+0.3.1 creates the title before its first measured fit, and its transform combines
+translation with scaling. No explicit slide animation exists in addon CSS/JS,
+AphesText only selects the font, and native location animations are scoped to
+PlaceName. Exact Coherent cause of the reported motion is not established.
+
+Keep the title hidden before attachment/content update, use a flex-centered
+container without translational transforms, and disable title-local transitions
+and animations. Reveal only after sizing; preserve native BossHP visibility and
+HP animation, 90% fitting, glyphs, side damage and all ordinary-enemy behavior.
+Browser acceptance checks first visible geometry, no active animations/transition
+and unchanged fitting across existing cases. Real Coherent appearance is pending;
+do not infer its cause or acceptance from browser checks.

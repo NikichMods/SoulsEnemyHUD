@@ -6,6 +6,7 @@ const source = fs.readFileSync(process.argv[2], 'utf8');
 let clock = 0, next = 0, callbacks = {}, timers = new Map();
 const nodes = {};
 function node() { return {style: {}, textContent: '', get offsetWidth() { return this.textContent.length * 49 * .8; }, appendChild(child) {
+    if (child.id === "SoulsEnemyHUDBossName") assert.equal(child.style.visibility, "hidden");
     this.child = child; if (child.id) nodes[child.id] = child;
 }, getBoundingClientRect() { return {width: this.textContent.length * parseFloat(this.style.fontSize || '24') * .8}; }}; }
 const bar = node();
@@ -37,6 +38,7 @@ const title = nodes.SoulsEnemyHUDBossName;
 assert.equal(title.child.textContent, 'POZHIRATEL NENASYTNYY');
 assert.equal(title.child.className, 'AphesText');
 const originalTransform = title.child.style.transform;
+assert.ok(/^scale\(/.test(originalTransform)); // no translation on first display
 assert.equal(nativeName.textContent, 'Native localized name');
 sample(1, 80); assert.equal(damage.textContent, '20');
 sample(1.5, 50); assert.equal(damage.textContent, '50');
