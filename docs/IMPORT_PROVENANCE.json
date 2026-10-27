@@ -1,0 +1,120 @@
+{
+  "originalRepository": "NikichMods/AsterigosMods",
+  "originalCommit": "9f78afd34b3457db0e46e7fe55a70c0a959c83ed",
+  "originalPrefix": "SoulsEnemyHUD/",
+  "extractedCommit": "1911be281564492a43c7634b34cadb43192819c4",
+  "extractedTree": "1a34f3dea2fa4ddf89452dbfe195099619846307",
+  "branch": "feature/boss-hud",
+  "files": {
+    "AGENTS.md": {
+      "original_path": "SoulsEnemyHUD/AGENTS.md",
+      "original_blob": "20baa1e3f89cf75384a3b98fd996db0dec3e00d8",
+      "sha256": "5659a849f4bab7c4348aadd90e6a3e0b1322e86b3fee65618511de5d2deb9998"
+    },
+    "LICENSE-NOTICE": {
+      "original_path": "SoulsEnemyHUD/LICENSE-NOTICE",
+      "original_blob": "339c645985ab351372ffe71e956e22f46bbde645",
+      "sha256": "92b915ba613977889d175ff08765381c5509dfa8f4dd4d15a68e3fe1b9c9f808"
+    },
+    "README.md": {
+      "original_path": "SoulsEnemyHUD/README.md",
+      "original_blob": "cf9a30a3eeb49f132c8e98e658762b3dab11bb3e",
+      "sha256": "5ff56762aa0ddcf81cfdc8e16c7d05462b028d7cf970a7be564365b5fc9fe97b"
+    },
+    "Scripts/boss.lua": {
+      "original_path": "SoulsEnemyHUD/Scripts/boss.lua",
+      "original_blob": "b74acaa467ad4bc43c2ccd0f6e856362bae3ff91",
+      "sha256": "beff1f61a4482914fb777910fdfe9b98494d2f1824b0aa5026a6a18ac2696bdb"
+    },
+    "Scripts/main.lua": {
+      "original_path": "SoulsEnemyHUD/Scripts/main.lua",
+      "original_blob": "414e94047eceb3219e95ef9f464ad79477b87d97",
+      "sha256": "fcaaf0a58d47fe83b0cf6aeba54551fa43106a736d6403cdf5da385dddb806c9"
+    },
+    "Scripts/policy.lua": {
+      "original_path": "SoulsEnemyHUD/Scripts/policy.lua",
+      "original_blob": "efe904e11f0da160b05b76fe80d61051b0d1470e",
+      "sha256": "98c003f7ec48d34923809cb7cfefe089f3da1b4178492134ff86a7c02761e254"
+    },
+    "UI/boss.css": {
+      "original_path": "SoulsEnemyHUD/UI/boss.css",
+      "original_blob": "094a0e7ffe98768202906f2ceee11dc164378aa7",
+      "sha256": "44a4c1993a7f1fa936fb383ff1494fed64ad8642d9c2ee5422eef8bff13c54fa"
+    },
+    "UI/boss.js": {
+      "original_path": "SoulsEnemyHUD/UI/boss.js",
+      "original_blob": "1467be2c660ba33a31830835e23b91f324e41944",
+      "sha256": "e239cdd68ef069429796a7d8c6302f82ca99551e5f24be265665c1e2a51c0eb4"
+    },
+    "VERSION": {
+      "original_path": "SoulsEnemyHUD/VERSION",
+      "original_blob": "c43514fb17092254045a756794b65bf03b555eb3",
+      "sha256": "c58a749f70f5e1ba5394ebcdbfcfa02fa938c4a173d8e41e6c476a7c8b2acddd"
+    },
+    "docs/BOSS_IMPLEMENTATION.md": {
+      "original_path": "SoulsEnemyHUD/docs/BOSS_IMPLEMENTATION.md",
+      "original_blob": "39da9cea4e816c2cb7cbbf284b7f5064d01ab671",
+      "sha256": "9e9f27fea12da9ec9db43ced4434624a649c3bb9511586ae5b09c7f520120116"
+    },
+    "docs/REQUIREMENTS.md": {
+      "original_path": "SoulsEnemyHUD/docs/REQUIREMENTS.md",
+      "original_blob": "874d9021b6f8a402c764f56a6773ce6fec4a6b1b",
+      "sha256": "1e52966d0287f824836e1ba6bff47948396c3aabfb06924b90ef3a183e3370bb"
+    },
+    "docs/STATUS.md": {
+      "original_path": "SoulsEnemyHUD/docs/STATUS.md",
+      "original_blob": "a4b8332da762e1928e4b362c7568162341243426",
+      "sha256": "0e34de3601dce669735a88394cbf03578d92796c8c5f8e41ba21c5ff727bd5dc"
+    },
+    "docs/VERIFIED_RUNTIME.md": {
+      "original_path": "SoulsEnemyHUD/docs/VERIFIED_RUNTIME.md",
+      "original_blob": "5451d804d8931c79fd7efb8497bb27de68a1e36f",
+      "sha256": "37e19cc41d8f97c4b8e171bcf1787b77b052d602f1bffbf3ad761551e667f80f"
+    },
+    "research/boss-hud/diagnostic-01/README.md": {
+      "original_path": "SoulsEnemyHUD/research/boss-hud/diagnostic-01/README.md",
+      "original_blob": "fea1cc36e4db4d596e8d9240b30edc12877a4fd2",
+      "sha256": "f96445c0f39c508c76ac3013ec77b6fa9b15948f058cf01578325bcf9c847b3e"
+    },
+    "research/boss-hud/diagnostic-01/Scripts/main.lua": {
+      "original_path": "SoulsEnemyHUD/research/boss-hud/diagnostic-01/Scripts/main.lua",
+      "original_blob": "4a9a4880e4830d90214bdaad1cd63bf478a62d45",
+      "sha256": "f2cbb6e7cc3c14a8e5f5e96919741bc801f7d80c2589fa45dd9343bac830ee30"
+    },
+    "research/boss-hud/diagnostic-02/README.md": {
+      "original_path": "SoulsEnemyHUD/research/boss-hud/diagnostic-02/README.md",
+      "original_blob": "85dcce26f9ef95c9bae9b8a62a03ad1a6597e427",
+      "sha256": "7660765193398e53cc46485ab628e30b0e0e16d64c8e2d735a986bfa5fcb93e3"
+    },
+    "research/boss-hud/diagnostic-02/Scripts/main.lua": {
+      "original_path": "SoulsEnemyHUD/research/boss-hud/diagnostic-02/Scripts/main.lua",
+      "original_blob": "d5de150f8ccf6ce3a3eb95e09b4650e8ecf7f37f",
+      "sha256": "08245b5996cd87cf154c5617e2c800318e2341aab9b22b18f0fee543dbfb58aa"
+    },
+    "tests/boss_ui.test.js": {
+      "original_path": "SoulsEnemyHUD/tests/boss_ui.test.js",
+      "original_blob": "fdd9b0d515301f9530d839610f42dc2599a3f4df",
+      "sha256": "da32350c7a821c80ca8d82e807ea9214937de2842b8be46bb26878b2dc43ac2a"
+    },
+    "tests/test.py": {
+      "original_path": "SoulsEnemyHUD/tests/test.py",
+      "original_blob": "5f376f8cfe6a39c3c2faa6bcaf90daca472a3c14",
+      "sha256": "922e99b9f68a61293f822f0d85e79a669b61248b65ae254567edc6e9b17e5100"
+    },
+    "tests/test_boss_probe.py": {
+      "original_path": "SoulsEnemyHUD/tests/test_boss_probe.py",
+      "original_blob": "7f710f9500b69d531ed26972990436b77f7e9bf0",
+      "sha256": "facde3afc377d690ba9ffa93034997e69bf552ee309405e5683f6a5898c85658"
+    },
+    "tests/test_boss_ui.py": {
+      "original_path": "SoulsEnemyHUD/tests/test_boss_ui.py",
+      "original_blob": "d8c64aa27b4c15845f2fc68936998aaccd71e2e8",
+      "sha256": "9ca17ab4a4cf2a0c590f6aaebc94bbb66277d15c432e3c895ff4474b22dc0b80"
+    },
+    "tools/build_boss_ui.py": {
+      "original_path": "SoulsEnemyHUD/tools/build_boss_ui.py",
+      "original_blob": "d9f8e6720138654ba60cf69803074b6f1c89bf2a",
+      "sha256": "85f91ad1295dbf9c918941d74fffffc73372013ed4db857b1aed0afe10593d15"
+    }
+  }
+}

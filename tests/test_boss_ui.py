@@ -18,7 +18,7 @@ try:
     raise AssertionError('Unknown HTML accepted')
 except ValueError:
     pass
-host = root.parent/'.local/evidence/Asterigos-Subtitle-SoftEdges/verify-extracted/Genesis/Content/uiresources/Hud.html'
+host = root/'.local/external-inputs/subtitle-Hud.html'
 if host.exists():
     before = host.read_bytes()
     after = builder.build(before)
