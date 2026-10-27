@@ -104,7 +104,7 @@ Final DOM delivery, victory and multiple-boss behavior are separate unverified
 properties. Production readiness still requires assessing the observed reset seam
 and failure behavior; this probe is not the production implementation.
 
-`python tools/test.py SoulsEnemyHUD` with the configured external Lupa environment
+`python tools/test.py` with the configured external Lupa environment
 exercises both frozen probes and the accepted production adapter. Diagnostic 02
 tests include native local visibility events, direct/wrapped booleans, a live boss
 after hide, malformed independent HUD, stale component owner, destroyed/new HUD,

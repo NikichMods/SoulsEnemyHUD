@@ -1,0 +1,85 @@
+{
+  "originalRepository": "NikichMods/AsterigosMods",
+  "originalCommit": "271149ee2770cb219cc20a85e59a158f690f3b89",
+  "originalPrefix": "SoulsEnemyHUD/",
+  "extractedCommit": "29aa6fdbaec3f7dbebeb143e642688fdb5d1af58",
+  "extractedTree": "db9ee2b9e9ec04babb7025cb76f41a428ce7f900",
+  "branch": "research/boss-hud",
+  "files": {
+    "AGENTS.md": {
+      "original_path": "SoulsEnemyHUD/AGENTS.md",
+      "original_blob": "20baa1e3f89cf75384a3b98fd996db0dec3e00d8",
+      "sha256": "5659a849f4bab7c4348aadd90e6a3e0b1322e86b3fee65618511de5d2deb9998"
+    },
+    "LICENSE-NOTICE": {
+      "original_path": "SoulsEnemyHUD/LICENSE-NOTICE",
+      "original_blob": "339c645985ab351372ffe71e956e22f46bbde645",
+      "sha256": "92b915ba613977889d175ff08765381c5509dfa8f4dd4d15a68e3fe1b9c9f808"
+    },
+    "README.md": {
+      "original_path": "SoulsEnemyHUD/README.md",
+      "original_blob": "0f5d9053857ea37ca9d6783ee613c43943e98e29",
+      "sha256": "42aeaacfe48d62353faebf45018e50b90bb688184be5c4e1799b14c36bb40555"
+    },
+    "Scripts/main.lua": {
+      "original_path": "SoulsEnemyHUD/Scripts/main.lua",
+      "original_blob": "a11f71030beeacfc4d91ed5785d9bbfd2d642eba",
+      "sha256": "dc4b98acf5197817066fc6df68ae28b863db07b980fb8fc82fbc916ef3c0fc01"
+    },
+    "Scripts/policy.lua": {
+      "original_path": "SoulsEnemyHUD/Scripts/policy.lua",
+      "original_blob": "efe904e11f0da160b05b76fe80d61051b0d1470e",
+      "sha256": "98c003f7ec48d34923809cb7cfefe089f3da1b4178492134ff86a7c02761e254"
+    },
+    "VERSION": {
+      "original_path": "SoulsEnemyHUD/VERSION",
+      "original_blob": "6e8bf73aa550d4c57f6f35830f1bcdc7a4a62f38",
+      "sha256": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67"
+    },
+    "docs/REQUIREMENTS.md": {
+      "original_path": "SoulsEnemyHUD/docs/REQUIREMENTS.md",
+      "original_blob": "4753143543c95b4a3d5d9a7ad10631a1063790d9",
+      "sha256": "892e94f9703a34f79f8d61e82935f01628b20ad118eeb94229aa43a56d46cefe"
+    },
+    "docs/STATUS.md": {
+      "original_path": "SoulsEnemyHUD/docs/STATUS.md",
+      "original_blob": "8af479a19c2489ad4ee67aacc89983cf8585a1a2",
+      "sha256": "062bcad3bc2879d687d8e2413011b600232847ffee5f9ea4d5c631262cc90889"
+    },
+    "docs/VERIFIED_RUNTIME.md": {
+      "original_path": "SoulsEnemyHUD/docs/VERIFIED_RUNTIME.md",
+      "original_blob": "4ef951657f663f60a867c40247943cc4d1be403d",
+      "sha256": "046e11e43795e2257ddf13518b6f5deea0dd80e9fc21487f3ecc207c9ba04f38"
+    },
+    "research/boss-hud/diagnostic-01/README.md": {
+      "original_path": "SoulsEnemyHUD/research/boss-hud/diagnostic-01/README.md",
+      "original_blob": "fea1cc36e4db4d596e8d9240b30edc12877a4fd2",
+      "sha256": "f96445c0f39c508c76ac3013ec77b6fa9b15948f058cf01578325bcf9c847b3e"
+    },
+    "research/boss-hud/diagnostic-01/Scripts/main.lua": {
+      "original_path": "SoulsEnemyHUD/research/boss-hud/diagnostic-01/Scripts/main.lua",
+      "original_blob": "4a9a4880e4830d90214bdaad1cd63bf478a62d45",
+      "sha256": "f2cbb6e7cc3c14a8e5f5e96919741bc801f7d80c2589fa45dd9343bac830ee30"
+    },
+    "research/boss-hud/diagnostic-02/README.md": {
+      "original_path": "SoulsEnemyHUD/research/boss-hud/diagnostic-02/README.md",
+      "original_blob": "85dcce26f9ef95c9bae9b8a62a03ad1a6597e427",
+      "sha256": "7660765193398e53cc46485ab628e30b0e0e16d64c8e2d735a986bfa5fcb93e3"
+    },
+    "research/boss-hud/diagnostic-02/Scripts/main.lua": {
+      "original_path": "SoulsEnemyHUD/research/boss-hud/diagnostic-02/Scripts/main.lua",
+      "original_blob": "d5de150f8ccf6ce3a3eb95e09b4650e8ecf7f37f",
+      "sha256": "08245b5996cd87cf154c5617e2c800318e2341aab9b22b18f0fee543dbfb58aa"
+    },
+    "tests/test.py": {
+      "original_path": "SoulsEnemyHUD/tests/test.py",
+      "original_blob": "137cfae3d1b59ee77a8f9ef5e26d75c8d8caac7c",
+      "sha256": "948372bc0ab047caaaf10c3d1c1d4868f4e66fea7d403603863fb77c904363ed"
+    },
+    "tests/test_boss_probe.py": {
+      "original_path": "SoulsEnemyHUD/tests/test_boss_probe.py",
+      "original_blob": "6434749996482059dcdfb7a653436b75d31f7b4d",
+      "sha256": "0943212a85d43f326282959cd95508b57caa6d0b92a5800c4e57596b12e6e9e7"
+    }
+  }
+}
