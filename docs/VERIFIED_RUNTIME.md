@@ -351,3 +351,34 @@ Exact installation/hashes/build command/pretest log identity are in ignored
 preserved before any new run. The game was not launched or terminated. No runtime
 result is claimed yet: verify Aphes glyphs, fit/margins and side damage in game.
 0.2.0 remains the accepted stable source in main; no public release was created.
+
+## User feedback on 0.3.0 — not accepted, 2026-10-28
+
+The user supplied three 2560x1440 screenshots. The first two show ordinary readable
+Latin `POZHIRATEL NENASYTNYY` above the boss bar; the second has visibly different
+width/tracking despite the same spelling. The third shows native Aphes-looking
+glyphs above localized location names and is the desired visual reference.
+This establishes a mismatch with the requested appearance and a reported layout
+instability. It does not establish failed font resource loading, native CSS
+overrides, font timing, changed viewport, or HP-dependent width as the cause.
+The captured frames do not independently establish side-damage acceptance.
+
+Static inspection of the unchanged candidate: `layout()` gets bounds from outer
+`#BossHP`; it does not read `.cur_val` width. It can run after a changed damage
+string, name, resize, optional font notification and the bounded delayed refit.
+Repeated layout resets maximum size/tracking before fitting. These are code facts,
+not a proved diagnosis of either screenshot symptom. A new investigation must
+observe the actual host font/style/layout path rather than assume a cause.
+
+The current pak and main.lua hashes still match the 0.3.0 deployment manifest.
+No new build, installation, game launch or code mutation occurred in this handoff.
+Raw screenshots and their hashes are preserved only under ignored
+`.local/candidates/SoulsEnemyHUD-0.3.0/feedback-20261028/`. No screenshot/game payload
+was added to Git. The previous immutable 0.2.0 rollback is retained.
+
+Updated desired behavior belongs to REQUIREMENTS.md: real decorative glyph
+appearance, full-bar width cap of 90%, stable size/tracking for unchanged name and
+display, native lower name and side damage preserved. Source text semantics are
+not established by font cmap alone. Reuse Asterigos-Research R-007 and the native
+ShowPlaceName/stageAphes/placeAphes findings before fresh investigation. No new
+shared technical result was proved here; R-007 already owns the reusable font fact.
