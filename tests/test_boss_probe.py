@@ -219,3 +219,21 @@ add(attr); dispatch(); batch(); assert(not boss.isBoss(actor))
 assert(contains('fallback=accepted-overhead'))
 ''')
 print('PASS production boss bridge: exact identity extension, complete batch, show/hide and destroyed HUD invalidation, multiple-source fallback, fail-safe native return preservation.')
+
+# Pure-Lua shutdown leaves native args untouched and all previously registered
+# bridge callbacks inert, even if their parameters are no longer safe to unwrap.
+lua=fixture(source_text='LoopAsync(1000,function() return false end)')
+lua.globals().boss=lua.execute((Path(__file__).resolve().parents[1]/'Scripts/boss.lua').read_text())
+lua.execute("""
+ap.IsPlayerControlled=function() return false end
+ep.AddString=function(self,value) identityArgument=value end
+boss.poll(function(s) table.insert(logs,s) end)
+add(attr); dispatch(); batch(); assert(boss.isBoss(actor))
+local count=0; for _ in pairs(registered) do count=count+1 end
+boss.stop(); boss.stop(); assert(not boss.isBoss(actor))
+local bad={get=function() error('stopped bridge must not read parameters') end}
+for _,entry in pairs(registered) do if entry.pre then entry.pre(bad,bad,bad) end; if entry.post then entry.post(bad,bad,bad) end end
+boss.poll(function() error('no stopped poll work') end)
+local after=0; for _ in pairs(registered) do after=after+1 end; assert(after==count)
+""")
+print('PASS boss shutdown: source reset, native callbacks inert, no parameter reads/re-registration after stop.')

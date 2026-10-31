@@ -115,4 +115,9 @@ function M.poll(logOnce)
     if source and not usable(source) then source = nil end
     for key, entry in pairs(packets) do if os.time() - entry.wall > 2 then packets[key] = nil end end
 end
+-- Main setup shutdown: retain native registrations but make every owned callback
+-- inert before restoring widgets/cancelling the timer. No UObject calls here.
+function M.stop()
+    disabled, source, packets, batches = true, nil, {}, {}
+end
 return M

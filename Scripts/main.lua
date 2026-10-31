@@ -7,9 +7,11 @@ local config={trailHold=0.45,trailFade=0.5,showAfterHit=3.0,fadeIn=0.12,fadeOut=
     dotSize=14,dotFontSize=12}
 local entries={}
 local hooked=false
-local pending=false
+local disabled=false
+local timerHandle
 local floatingHooked=false
 local hiddenFloating={}
+local floatingOpacity={}
 local damageFont
 local reported={}
 local BP="/Game/MainContent/Template/UMG/MeterOnHead2.MeterOnHead2_C:Tick"
@@ -288,6 +290,7 @@ local function hideFloating(hud)
     if not derived(root,"CanvasPanel") or not derived(first,"TextBlock") then return end
     if first:GetParent():GetAddress()~=root:GetAddress() then return end
     local key=root:GetAddress()
+    if not hiddenFloating[key] then floatingOpacity[key]=root.RenderOpacity end
     if root.RenderOpacity~=0 then root:SetRenderOpacity(0) end
     if not hiddenFloating[key] then
         hiddenFloating[key]=root
@@ -295,36 +298,75 @@ local function hideFloating(hud)
     end
 end
 
-log("Loaded 0.3.1; compact enemies and boss bridge; Aphes boss name; runtime acceptance pending")
-LoopAsync(1000,function()
-    if pending then return false end
-    pending=true
-    ExecuteInGameThread(function()
-        local ok,err=pcall(function()
-            Boss.poll(report)
-            for key,e in pairs(entries) do
-                if not valid(e.widget) then entries[key]=nil end
-            end
-            for key,root in pairs(hiddenFloating) do
-                if not valid(root) then hiddenFloating[key]=nil end
-            end
-            if not floatingHooked and valid(StaticFindObject(FLOAT_BP)) then
-                RegisterHook(FLOAT_BP,function(context)
-                    local ok,err=pcall(hideFloating,context:get())
-                    if not ok then report("Floating HUD suppression error: "..tostring(err)) end
-                end)
-                floatingHooked=true; log("Verified HudUmg damage-pool Tick hook ready")
-            end
-            for _,floating in ipairs(FindAllOf("HudUmg_C") or {}) do hideFloating(floating) end
-            if not hooked and valid(StaticFindObject(BP)) then
-                RegisterHook(BP,function(context,geometry)
-                    tick(context:get(),geometry:get())
-                end)
-                hooked=true; log("MeterOnHead2 Tick hook ready")
-            end
+local function setup()
+    Boss.poll(report)
+    for key,e in pairs(entries) do
+        if not valid(e.widget) then entries[key]=nil end
+    end
+    for key,root in pairs(hiddenFloating) do
+        if not valid(root) then hiddenFloating[key]=nil; floatingOpacity[key]=nil end
+    end
+    if not floatingHooked and valid(StaticFindObject(FLOAT_BP)) then
+        local pre,post=RegisterHook(FLOAT_BP,function(context)
+            if disabled then return end
+            local ok,err=pcall(hideFloating,context:get())
+            if not ok then report("Floating HUD suppression error: "..tostring(err)) end
         end)
-        if not ok then report("Setup error: "..tostring(err)) end
-        pending=false
+        assert(type(pre)=="number" and type(post)=="number","Floating Tick hook registration failed")
+        floatingHooked=true; log("Verified HudUmg damage-pool Tick hook ready")
+    end
+    for _,floating in ipairs(FindAllOf("HudUmg_C") or {}) do hideFloating(floating) end
+    if not hooked and valid(StaticFindObject(BP)) then
+        local pre,post=RegisterHook(BP,function(context,geometry)
+            if disabled then return end
+            tick(context:get(),geometry:get())
+        end)
+        assert(type(pre)=="number" and type(post)=="number","Overhead Tick hook registration failed")
+        hooked=true; log("MeterOnHead2 Tick hook ready")
+    end
+end
+
+local function disable(reason)
+    disabled=true -- guards precede fallible cleanup; no callback can restart setup
+    pcall(log,reason)
+    local stopped,stopErr=pcall(Boss.stop)
+    if not stopped then pcall(log,"Boss cleanup failed: "..tostring(stopErr)) end
+    -- Existing per-widget restoration is best-effort. Complete all UObject calls
+    -- before CancelDelayedAction to avoid the pinned nested-removal index hazard.
+    for _,entry in pairs(entries) do
+        local ok,err=pcall(restore,entry)
+        if not ok then pcall(log,"Widget cleanup failed: "..tostring(err)) end
+    end
+    for key,root in pairs(hiddenFloating) do
+        local ok,err=pcall(function()
+            if valid(root) then root:SetRenderOpacity(floatingOpacity[key]) end
+        end)
+        if not ok then pcall(log,"Floating cleanup failed: "..tostring(err)) end
+    end
+    entries={}; hiddenFloating={}; floatingOpacity={}
+    local handle=timerHandle
+    timerHandle=nil -- only one cancellation attempt, including when it fails
+    if handle~=nil then
+        local ok,cancelled=pcall(CancelDelayedAction,handle)
+        if not ok or cancelled~=true then
+            pcall(log,"Scheduler cancellation failed; callbacks remain inert: "..tostring(cancelled))
+        end
+    end
+end
+
+log("Loaded 0.3.3; compact enemies and boss bridge; GameThread setup candidate; nominal 1000ms polling")
+if type(LoopInGameThreadWithDelay)~="function" or type(CancelDelayedAction)~="function" then
+    disable("Scheduler unavailable; GameThread delayed-action API required; native HUD retained")
+else
+    local ok,handle=pcall(LoopInGameThreadWithDelay,1000,function()
+        if disabled then return end
+        local updated,err=pcall(setup)
+        if not updated then disable("Setup stopped; native HUD restoration attempted: "..tostring(err)) end
+        -- This API ignores return values; stopping requires the saved handle.
     end)
-    return false
-end)
+    if ok and math.type(handle)=="integer" and handle>=0 then
+        timerHandle=handle
+    else
+        disable("Scheduler registration failed; native HUD retained: "..tostring(handle))
+    end
+end
