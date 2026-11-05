@@ -16,3 +16,7 @@ Use the [0.3.1 base](https://github.com/NikichMods/SoulsEnemyHUD/releases/tag/v0
 and apply this Lua update to the UE4SS Mods folder with the game closed.
 The ZIP preserves its original test-era README as part of the accepted archive.
 See [candidate evidence and rollback](CANDIDATE-0.3.3.md).
+
+[Stable GitHub Release](https://github.com/NikichMods/SoulsEnemyHUD/releases/tag/v0.3.3)
+was published on 2026-11-05. Both the public ZIP and checksum file were
+downloaded without authentication and matched the local SHA-256 digests.
