@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3 — 2026-11-05
+
+- Run HUD setup on a single GameThread timer with fail-safe cancellation.
+- Lua update for the 0.3.1 base installation.
+
 ## 0.3.1 — 2026-10-28
 
 First public packaged release.

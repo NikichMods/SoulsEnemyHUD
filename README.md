@@ -2,7 +2,7 @@
 
 Compact enemy health bars, accumulated damage and a separate lock-on dot for **Asterigos: Curse of the Stars**.
 
-**Stable version: 0.3.1.** Download the ZIP from [GitHub Releases](https://github.com/NikichMods/SoulsEnemyHUD/releases/latest).
+**Stable version: 0.3.3.** Install the 0.3.1 base as described below, then extract the 0.3.3 Lua update into the existing UE4SS Mods folder, merging the SoulsEnemyHUD directory with the game closed. Download the update from [GitHub Releases](https://github.com/NikichMods/SoulsEnemyHUD/releases/latest).
 
 ## Features
 
@@ -29,4 +29,4 @@ To uninstall, close the game, remove the `SoulsEnemyHUD` mod folder and `z330_So
 
 Original project code is MPL-2.0; game-owned content in the modified HUD retains its original rights and is not covered by that license. Fonts and third-party loader binaries are not included. See [LICENSING.md](LICENSING.md).
 
-[Verified runtime](docs/VERIFIED_RUNTIME.md) · [Release identity](docs/RELEASE-0.3.1.md) · [Changelog](CHANGELOG.md).
+[Verified runtime](docs/VERIFIED_RUNTIME.md) · [Release identity](docs/RELEASE-0.3.3.md) · [Changelog](CHANGELOG.md).

@@ -468,5 +468,5 @@ directory; z320/mods.txt unchanged. No new probe, game launch/termination or bui
 [0.3.3 candidate](CANDIDATE-0.3.3.md) replaces only Lua setup scheduling using
 the pinned UE4SS delayed-action contract ([readiness](SCHEDULER_READINESS.md)).
 Offline/CI passed and Lua-only installation is verified; game delivery/lifecycle
-and unchanged visual behavior still await user acceptance. No new host runtime
+and visual behavior were accepted on 2026-11-05. See [release evidence](RELEASE-0.3.3.md). No new host runtime
 finding or HildaSoftLight crash attribution is asserted.

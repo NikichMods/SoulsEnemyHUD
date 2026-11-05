@@ -1,7 +1,6 @@
 # SoulsEnemyHUD 0.3.3 — Lua scheduler candidate
 
-Status: installed with game closed on 2026-10-31; **runtime acceptance pending**.
-Stable main/tag/release remains 0.3.1. The stopped 0.3.2 appearance experiment is excluded.
+Installed with game closed on 2026-10-31 and accepted on 2026-11-05. See [release record](RELEASE-0.3.3.md). The stopped 0.3.2 appearance experiment is excluded.
 
 Branch: `fix/safe-game-thread-scheduler`.
 Exact runtime source: `cc5974b9406d8ff1b38c36114abffa21db846235`.
