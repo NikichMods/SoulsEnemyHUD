@@ -12,11 +12,14 @@ errors were found. Genesis.log records RequestExit(0) and orderly engine shutdow
 - Private acceptance UE4SS.log SHA-256: `f2cc24a824b031465906ba00317e15af68c5b232a391c1b9d23874ebd3e544c7`
 - Private acceptance Genesis.log SHA-256: `1c4c9f910b61ff3ac70a54bd9625506fb5734208827eb19e20c3416401038a21`
 
-Use the [0.3.1 base](https://github.com/NikichMods/SoulsEnemyHUD/releases/tag/v0.3.1)
-and apply this Lua update to the UE4SS Mods folder with the game closed.
-The ZIP preserves its original test-era README as part of the accepted archive.
-See [candidate evidence and rollback](CANDIDATE-0.3.3.md).
+## Complete installation archive
 
-[Stable GitHub Release](https://github.com/NikichMods/SoulsEnemyHUD/releases/tag/v0.3.3)
-was published on 2026-11-05. Both the public ZIP and checksum file were
-downloaded without authentication and matched the local SHA-256 digests.
+Download [SoulsEnemyHUD-0.3.3.zip](https://github.com/NikichMods/SoulsEnemyHUD/releases/download/v0.3.3/SoulsEnemyHUD-0.3.3.zip) and extract it into the game directory, merging the Genesis folder. Requires the external UE4SS runtime and UEHelpers. The archive includes the activation marker and exact accepted Lua and z330 pak. Extraction into an empty directory verified every file.
+
+- Complete ZIP SHA-256: `008083b0952020bdf3565a358b07d674e065d1972d3be6751f8c912c82395bde`
+- [Complete ZIP checksum](https://github.com/NikichMods/SoulsEnemyHUD/releases/download/v0.3.3/SoulsEnemyHUD-0.3.3.zip.sha256)
+- Pak provenance: published 0.3.1 ZIP, verified against the recorded release and pak digests.
+
+The original Lua update and SHA256SUMS.txt remain available for users who already have the exact z330 pak. Both original assets were downloaded and hash-verified on 2026-11-05. See [candidate evidence and rollback](CANDIDATE-0.3.3.md).
+
+The complete public ZIP and its checksum file were downloaded without authentication and matched the local SHA-256 digests.

@@ -2,7 +2,7 @@
 
 Compact enemy health bars, accumulated damage and a separate lock-on dot for **Asterigos: Curse of the Stars**.
 
-**Stable version: 0.3.3.** Install the 0.3.1 base as described below, then extract the 0.3.3 Lua update into the existing UE4SS Mods folder, merging the SoulsEnemyHUD directory with the game closed. Download the update from [GitHub Releases](https://github.com/NikichMods/SoulsEnemyHUD/releases/latest).
+**Stable version: 0.3.3.** Download [SoulsEnemyHUD-0.3.3.zip](https://github.com/NikichMods/SoulsEnemyHUD/releases/download/v0.3.3/SoulsEnemyHUD-0.3.3.zip). It contains the Lua mod and HUD pak for a fresh installation.
 
 ## Features
 
@@ -16,7 +16,7 @@ Compact enemy health bars, accumulated damage and a separate lock-on dot for **A
 Tested on Steam 1.09/build12996889, Windows x64, UE4.27, with UE4SS v3.0.1-1181-g83330635 and its UEHelpers module. Other builds are unverified. UE4SS is required and is not bundled.
 
 1. Close the game and install the external UE4SS/UEHelpers runtime if needed.
-2. Extract `SoulsEnemyHUD-0.3.1.zip` into the game installation folder containing `Asterigos.exe`, merging its `Genesis` folder.
+2. Extract `SoulsEnemyHUD-0.3.3.zip` into the game installation folder containing `Asterigos.exe`, merging its `Genesis` folder. The same archive upgrades an existing installation.
 3. The archive places Lua under `Genesis/Binaries/Win64/ue4ss/Mods/SoulsEnemyHUD/Scripts/` and `z330_SoulsEnemyHUD_P.pak` under `Genesis/Content/Paks/~mods/`. The included `enabled.txt` enables the mod; if you already explicitly list SoulsEnemyHUD as disabled in `mods.txt`, set its value to `1`.
 
 ## Compatibility and removal
